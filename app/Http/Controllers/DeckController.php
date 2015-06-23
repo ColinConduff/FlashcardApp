@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use Auth;
+use App\Deck;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class DeckController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $decks = Deck::all();
+
+        return view('decks.showAll', compact('decks'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('decks.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(Requests\DeckRequest $request)
+    {
+        $deck = new Deck($request->all());
+
+        Auth::user()->decks()->save($deck);
+
+        return redirect('decks');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $deck = Deck::findOrFail($id);
+
+        return view('decks.showOne', compact('deck'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $deck = Deck::findOrFail($id);
+
+        return view('decks.edit', compact('deck'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id, Requests\DeckRequest $request)
+    {
+        $deck = Deck::findOrFail($id);
+
+        $deck->update($request->all());
+
+        return redirect('decks');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
