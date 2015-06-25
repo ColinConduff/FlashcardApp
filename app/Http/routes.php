@@ -11,11 +11,33 @@
 |
 */
 
-
-Route::get('/home', function()
+/* Temporary routes */
+Route::get('/', function()
 {
-    return View::make('app');
+	$data = [];
+    return view('home', $data);
 });
+
+Route::get('dashboard', ['middleware' => 'auth', function()
+{
+	$data = [
+		'name' => 'John Doe',
+	];
+
+    return view('dashboard', $data);
+}]);
+
+Route::get('browse', ['middleware' => 'auth',  function()
+{
+	$data = [];
+    return view('browse', $data);
+}]);
+
+Route::get('forum', ['middleware' => 'auth', function()
+{
+	$data = [];
+    return view('forum', $data);
+}]);
 
 
 Route::resource('decks', 'DeckController');

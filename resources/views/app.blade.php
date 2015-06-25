@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset= "UTF-8" >
-    <title>My Website</title>
+    <title>Flashcards App</title>
     
     <!-- bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -14,7 +14,6 @@
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -22,14 +21,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url('/home') }}">Flashcards App</a>
+      <a class="navbar-brand" href="{{ url('/') }}">Flashcards App</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li><a href="{{ url('/dashboard') }}">Dashboard<span class="sr-only">(current)</span></a></li>
+        <li><a href="{{ url('/browse') }}">Browse</a></li>
+        <li><a href="{{ url('/forum') }}">Forum</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -37,10 +36,10 @@
         <li><a href="{{ url('auth/logout') }}">Logout</a></li>
         <li><a href="{{ url('auth/register') }}">Register</a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 
-    @yield('content')
+  @yield('content')
 </body>
 </html>
