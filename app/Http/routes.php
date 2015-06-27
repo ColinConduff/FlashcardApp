@@ -14,8 +14,12 @@
 /* Temporary routes */
 Route::get('/', function()
 {
-	$data = [];
-    return view('home', $data);
+    return view('home');
+});
+
+Route::get('/home', function()
+{
+    return view('home');
 });
 
 Route::get('dashboard', ['middleware' => 'auth', function()
