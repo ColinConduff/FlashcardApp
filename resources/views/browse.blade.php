@@ -6,6 +6,13 @@
 		<h1 class="text-center">Browse Decks</h1>
 		<hr/>
 
+		<form class="navbar-form text-center" role="search">
+	        <div class="form-group">
+	          <input type="text" class="form-control" placeholder="Search">
+	        </div>
+	        <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+
 		<table class="table table-striped" style="width:100%">
 		  <tr>
 		    <th><a href="#">Title</a></th>
