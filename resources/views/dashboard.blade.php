@@ -10,16 +10,19 @@
 	<div class="col-md-6">
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">
-	    	Decks
-	    	<button type="button" class="btn btn-primary pull-right">Create</button>
-		</h3>
+	  	<a href="{{ url('/decks') }}">
+	    	<h3 class="panel-title">Decks</h3>
+	    </a>
 	  </div>
 	  <div class="panel-body">
 	    {{-- @include('decks.showAll') --}}
 	    <div class="row">
 		    <div class="col-md-6">
-			    <h4>Test 1 <span class="badge">3</span> <small>- private</small></h4>
+			    <h4>
+			    	<a href="{{ url('/deck/$id') }}">Test 1</a> 
+			    	<span class="badge">3</span> 
+			    	<small>- private</small>
+			    </h4>
 			    <h5>Subject:  Databases</h5>
 			</div>
 		    <div class="col-md-6">
@@ -30,7 +33,11 @@
 	    <hr/>
 	    <div class="row">
 	    	<div class="col-md-6">
-		    	<h4>Test 2 <span class="badge">4</span> <small>- public</small></h4>
+		    	<h4>
+		    		<a href="{{ url('/deck/$id') }}">Test 2</a>
+		    		<span class="badge">4</span> 
+		    		<small>- public</small>
+		    	</h4>
 		    	<h5>Subject:  Algorithms</h5>
 		   	</div>
 		    <div class="col-md-6">
@@ -41,7 +48,11 @@
 	    <hr/>
 	    <div class="row">
 	    	<div class="col-md-6">
-		    	<h4>Test 3 <span class="badge">2</span> <small>- public</small></h4>
+		    	<h4>
+		    		<a href="{{ url('/deck/$id') }}">Test 3</a> 
+		    		<span class="badge">2</span> 
+		    		<small>- public</small>
+	    		</h4>
 		    	<h5>Subject:  Discrete Math</h5>
 		    </div>
 		    <div class="col-md-6">
@@ -56,12 +67,14 @@
 	<div class="col-md-6">
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">Reviews</h3>
+	    <a href="{{ url('/reviews') }}">
+	    	<h3 class="panel-title">Reviews</h3>
+	    </a>
 	  </div>
 	  <div class="panel-body">
 	    {{-- @yield('reviewsContent') --}}
 	    <div>
-		    <h4>Review of:  SpanishDeck <small>by AnotherUser</h4>
+		    <h4>Review of:  SpanishDeck <small>by AnotherUser</small></h4>
 	    	<h5>
 	    		Title:  AnotherUser's SpanishDeck is mediocre at best!
 	    	</h5>
@@ -75,13 +88,37 @@
 	  </div>
 	</div>
 	</div>
+
+	<div class="col-md-6">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	  	<a href="{{ url('/notes') }}">
+	    	<h3 class="panel-title">Notes</h3>
+	    </a>
+	  </div>
+	  <div class="panel-body">
+	    {{-- @yield('notesContent') --}}
+	    <div>
+		    <h4>Flashcard: "Como estas?"<small> by OtherUser on deck: SpanishDeck</small></h4>
+	    	<p>
+	    		Note: The answer is incorrect! Please change it OtherUser!
+	    	</p> 
+	    	<div>
+	    		<h5><span class="badge">201</span><small> Published: June 22nd, 2015</small></h5>
+	    	</div>
+    	</div>
+	  </div>
+	</div>
+	</div>
 	</div>
 
 	<div class="row">
 	<div class="col-md-6">
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">Posts</h3>
+	    <a href="{{ url('/posts') }}">	
+	    	<h3 class="panel-title">Posts</h3>
+	    </a>
 	  </div>
 	  <div class="panel-body">
 	    {{-- @yield('postsContent') --}}
@@ -117,7 +154,9 @@
 	<div class="col-md-6">
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">Comments</h3>
+	    <a href="{{ url('/comments') }}">
+	    	<h3 class="panel-title">Comments</h3>
+	    </a>
 	  </div>
 	  <div class="panel-body">
 	    {{-- @yield('commentsContent') --}}
@@ -133,24 +172,6 @@
 	  </div>
 	</div>
 	</div>
-	</div>
-
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-	    <h3 class="panel-title">Notes</h3>
-	  </div>
-	  <div class="panel-body">
-	    {{-- @yield('notesContent') --}}
-	    <div>
-		    <h4>Flashcard: "Como estas?"<small> by OtherUser on deck: SpanishDeck</small></h4>
-	    	<p>
-	    		Note: The answer is incorrect! Please change it OtherUser!
-	    	</p> 
-	    	<div>
-	    		<h5><span class="badge">201</span><small> Published: June 22nd, 2015</small></h5>
-	    	</div>
-    	</div>
-	  </div>
 	</div>
 
 </div>

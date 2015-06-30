@@ -27,7 +27,8 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{{ url('/dashboard') }}">Dashboard<span class="sr-only">(current)</span></a></li>
+        <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url('/study') }}">Study</a></li>
         <li><a href="{{ url('/browse') }}">Browse</a></li>
         <li><a href="{{ url('/forum') }}">Forum</a></li>
       </ul>

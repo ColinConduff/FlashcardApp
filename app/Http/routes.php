@@ -31,6 +31,21 @@ Route::get('dashboard', ['middleware' => 'auth', function()
     return view('dashboard', $data);
 }]);
 
+Route::get('study', ['middleware' => 'auth', function()
+{
+    return view('study');
+}]);
+
+Route::get('studyFront', ['middleware' => 'auth', function()
+{
+    return view('studyFront');
+}]);
+
+Route::get('studyBack', ['middleware' => 'auth', function()
+{
+    return view('studyBack');
+}]);
+
 Route::get('browse', ['middleware' => 'auth',  function()
 {
 	$data = [];
