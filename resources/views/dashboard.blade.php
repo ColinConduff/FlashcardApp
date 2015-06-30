@@ -19,7 +19,7 @@
 	    <div class="row">
 		    <div class="col-md-6">
 			    <h4>
-			    	<a href="{{ url('/deck/$id') }}">Test 1</a> 
+			    	<a href="{{ url('decks', [$deck->id]) }}">Test 1</a> 
 			    	<span class="badge">3</span> 
 			    	<small>- private</small>
 			    </h4>
@@ -34,7 +34,7 @@
 	    <div class="row">
 	    	<div class="col-md-6">
 		    	<h4>
-		    		<a href="{{ url('/deck/$id') }}">Test 2</a>
+		    		<a href="{{ url('deck', [$deck->id]) }}">Test 2</a>
 		    		<span class="badge">4</span> 
 		    		<small>- public</small>
 		    	</h4>
@@ -49,7 +49,7 @@
 	    <div class="row">
 	    	<div class="col-md-6">
 		    	<h4>
-		    		<a href="{{ url('/deck/$id') }}">Test 3</a> 
+		    		<a href="">Test 3</a> 
 		    		<span class="badge">2</span> 
 		    		<small>- public</small>
 	    		</h4>
