@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+use Auth;
+use App\Post;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +19,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Auth::user()->posts()->get();
+
+        return view('posts.showAll', compact('posts'));
     }
 
     /**
@@ -26,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+         return view('posts.create');
     }
 
     /**
@@ -34,9 +39,14 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Requests\PostRequest $request)
     {
-        //
+        $post = new Post($request->all());
+        $post['published_at'] = Carbon::now();
+
+        Auth::user()->posts()->save($post);
+
+        return redirect('posts');
     }
 
     /**
@@ -47,7 +57,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Auth::user()->posts()->findOrFail($id);
+
+        return view('posts.showOne', compact('post'));
     }
 
     /**
@@ -58,7 +70,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Auth::user()->posts()->findOrFail($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -67,9 +81,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, Requests\PostRequest $request)
     {
-        //
+        $post = Auth::user()->posts()->findOrFail($id);
+        $post['published_at'] = Carbon::now();
+        $post->update($request->all());
+
+        return redirect('posts');
     }
 
     /**
@@ -80,6 +98,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Auth::user()->posts()->findOrFail($id);
+        $post->delete();
+
+        return redirect('posts');
     }
 }

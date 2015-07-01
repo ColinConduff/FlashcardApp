@@ -48,5 +48,8 @@
         "preferred-install": "dist"
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require": {
+        "nesbot/carbon": "~1.14"
+    }
 }

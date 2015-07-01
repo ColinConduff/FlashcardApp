@@ -60,12 +60,12 @@ Route::get('forum', ['middleware' => 'auth', function()
 
 
 Route::resource('decks', 'DeckController');
+Route::resource('posts', 'PostController');
 
 /* middleware is not working
 Route::resource('flashcards', ['middleware' => 'auth', 'uses' => 'FlashcardController']);
 Route::resource('notes', ['middleware' => 'auth', 'uses' => 'ForumController']);
 Route::resource('comments', ['middleware' => 'auth', 'uses' => 'MessageController']);
-Route::resource('posts', ['middleware' => 'auth', 'uses' => 'PostController']);
 Route::resource('reviews', ['middleware' => 'auth', 'uses' => 'ReviewController']);
 */
 // Authentication routes... 

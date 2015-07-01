@@ -18,7 +18,7 @@ class DeckController extends Controller
      */
     public function index()
     {
-        $decks = Deck::all();
+        $decks = Auth::user()->decks()->get();
 
         return view('decks.showAll', compact('decks'));
     }
@@ -55,7 +55,7 @@ class DeckController extends Controller
      */
     public function show($id)
     {
-        $deck = Deck::findOrFail($id);
+        $deck = Auth::user()->decks()->findOrFail($id);
 
         return view('decks.showOne', compact('deck'));
     }
@@ -68,7 +68,7 @@ class DeckController extends Controller
      */
     public function edit($id)
     {
-        $deck = Deck::findOrFail($id);
+        $deck = Auth::user()->decks()->findOrFail($id);
 
         return view('decks.edit', compact('deck'));
     }
@@ -81,7 +81,7 @@ class DeckController extends Controller
      */
     public function update($id, Requests\DeckRequest $request)
     {
-        $deck = Deck::findOrFail($id);
+        $deck = Auth::user()->decks()->findOrFail($id);
 
         $deck->update($request->all());
 
@@ -96,6 +96,9 @@ class DeckController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deck = Auth::user()->decks()->find($id);
+        $deck->delete();
+
+        return redirect('decks');
     }
 }

@@ -6,10 +6,11 @@
 		<h1 class="text-center">Decks</h1>
 		<hr/>
 		
-
+		<a href="{{ url('decks/create') }}">
 		<button type="button" class="btn btn-primary btn-lg btn-block">
 			Create a New Deck!
 		</button>
+		</a>
 
 		<div style="margin-top: 2em;">
 		@if(count($decks))
@@ -42,9 +43,10 @@
 							</button>
 						</td>
 						<td>
-		    				<button type="button" class="btn btn-danger">
-		    					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-		    				</button>
+							{!! Form::open(array('url' => 'decks/' . $deck->id, 'class' => 'pull-right')) !!}
+			                    {!! Form::hidden('_method', 'DELETE') !!}
+			                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
+			                {!! Form::close() !!}
 						</td>
 					</tr>
 				@endforeach

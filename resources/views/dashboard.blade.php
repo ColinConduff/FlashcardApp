@@ -19,31 +19,23 @@
 	    <div class="row">
 		    <div class="col-md-6">
 			    <h4>
-			    	<a href="{{ url('decks', [$deck->id]) }}">Test 1</a> 
+			    	<a href="{{-- url('decks', [$deck->id]) --}}">Test 1</a> 
 			    	<span class="badge">3</span> 
 			    	<small>- private</small>
 			    </h4>
 			    <h5>Subject:  Databases</h5>
 			</div>
-		    <div class="col-md-6">
-		    	<button type="button" class="btn btn-info pull-right">Edit</button>
-		    	<button type="button" class="btn btn-danger pull-right">Delete</button>
-	    	</div>
 	    </div>
 	    <hr/>
 	    <div class="row">
 	    	<div class="col-md-6">
 		    	<h4>
-		    		<a href="{{ url('deck', [$deck->id]) }}">Test 2</a>
+		    		<a href="{{-- url('deck', [$deck->id]) --}}">Test 2</a>
 		    		<span class="badge">4</span> 
 		    		<small>- public</small>
 		    	</h4>
 		    	<h5>Subject:  Algorithms</h5>
 		   	</div>
-		    <div class="col-md-6">
-		    	<button type="button" class="btn btn-info pull-right">Edit</button>
-		    	<button type="button" class="btn btn-danger pull-right">Delete</button>
-	    	</div>
 	    </div>
 	    <hr/>
 	    <div class="row">
@@ -55,10 +47,6 @@
 	    		</h4>
 		    	<h5>Subject:  Discrete Math</h5>
 		    </div>
-		    <div class="col-md-6">
-		    	<button type="button" class="btn btn-info pull-right">Edit</button>
-		    	<button type="button" class="btn btn-danger pull-right">Delete</button>
-	   		</div>
 	    </div>
 	  </div>
 	</div>
