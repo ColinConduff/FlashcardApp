@@ -2,31 +2,34 @@
 
 @section('content')
 <div class="container">
+    <h1>Login</h1>
+    <hr/>
+
     <form method="POST" action="/auth/login">
-        <h1>Login</h1>
-        <hr/>
 
         @include('errors.list')
 
         {!! csrf_field() !!}
 
-        <div>
-            Email
-            <input type="email" name="email" value="{{ old('email') }}">
+        <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" type="email" name="email" value="{{ old('email') }}">
         </div>
 
-        <div>
-            Password
-            <input type="password" name="password" id="password">
+        <div class="form-group">
+            <label>Password</label>
+            <input class="form-control" type="password" name="password" id="password">
         </div>
 
-        <div>
-            <input type="checkbox" name="remember"> Remember Me
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="remember"> 
+                Remember Me
+            </label>
         </div>
 
-        <div>
-            <button type="submit">Login</button>
-        </div>
+        <button type="submit" class="btn btn-default">Login</button>
+
     </form>
 </div>
 @stop

@@ -8,7 +8,6 @@ class Post extends Model
 {
     protected $fillable = [
         'user_id',
-        'comment_id',
         'title',
         'body',
         'topic',
