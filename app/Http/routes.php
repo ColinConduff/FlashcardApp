@@ -22,14 +22,10 @@ Route::get('/home', function()
     return view('home');
 });
 
-Route::get('dashboard', ['middleware' => 'auth', function()
-{
-	$data = [
-		'name' => 'John Doe',
-	];
-
-    return view('dashboard', $data);
-}]);
+Route::get('dashboard', [
+	'middleware' => 'auth', 
+	'uses' => 'DashboardController@displayDashboard'
+]);
 
 Route::get('study', ['middleware' => 'auth', function()
 {

@@ -21,9 +21,9 @@
 						<td>{{ $deck->subject }}</td>
 						<td>
 							@if ( $deck->private )
-								True
+								Private
 							@else
-								False
+								Public
 							@endif
 						</td>
 						<td>
