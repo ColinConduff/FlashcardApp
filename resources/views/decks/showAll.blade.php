@@ -3,6 +3,16 @@
 @section('content')
 
 	<div class="container">
+		<ul class="nav nav-pills nav-justified">
+		  <li role="presentation"><a href="{{ url('/decks') }}">Decks</a></li>
+		  <li role="presentation"><a href="{{ url('/reviews') }}">Reviews</a></li>
+		  <li role="presentation"><a href="{{ url('/notes') }}">Notes</a></li>
+		  <li role="presentation"><a href="{{ url('/posts') }}">Posts</a></li>
+		  <li role="presentation"><a href="{{ url('/comments') }}">Comments</a></li>
+		</ul>
+	</div>
+
+	<div class="container">
 		<h1 class="text-center">Decks</h1>
 		<hr/>
 		
@@ -43,7 +53,7 @@
 							</button>
 						</td>
 						<td>
-							{!! Form::open(array('url' => 'decks/' . $deck->id, 'class' => 'pull-right')) !!}
+							{!! Form::open(array('url' => 'decks/' . $deck->id)) !!}
 			                    {!! Form::hidden('_method', 'DELETE') !!}
 			                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
 			                {!! Form::close() !!}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+use Carbon\Carbon;
 use App\Review;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,9 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = Auth::user()->reviews()->get();
+
+        return view('reviews.showAll', compact('reviews'));
     }
 
     /**

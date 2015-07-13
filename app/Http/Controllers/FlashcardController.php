@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
 use Auth;
 use App\Flashcard;
+use App\Deck;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -18,7 +20,9 @@ class FlashcardController extends Controller
      */
     public function index()
     {
-        //
+        // $flashcards = DB::table('flashcards')->where('deck_id', '=', $id)->get();
+
+        // return view('flashcards.showAll', compact('flashcards'));
     }
 
     /**
@@ -26,19 +30,24 @@ class FlashcardController extends Controller
      *
      * @return Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     return view('decks.create');
+    // }
 
     /**
      * Store a newly created resource in storage.
      *
      * @return Response
      */
-    public function store()
+    public function store(Requests\FlashcardRequest $request)
     {
-        //
+        $flashcard = new Flashcard($request->all());
+        $flashcard['deck_id'] = $request->deck_id;
+
+        $flashcard->save();
+
+        return redirect() ->  action('DeckController@show', ['id' => $flashcard->deck_id]);
     }
 
     /**
@@ -49,7 +58,9 @@ class FlashcardController extends Controller
      */
     public function show($id)
     {
-        //
+        $flashcard = Flashcard::findOrFail($id);
+
+        return view('flashcards.showOne', compact('flashcard'));
     }
 
     /**
@@ -60,7 +71,9 @@ class FlashcardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $flashcard = Flashcard::findOrFail($id);
+
+        return view('flashcards.edit', compact('flashcard'));
     }
 
     /**
@@ -69,9 +82,13 @@ class FlashcardController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, Requests\FlashcardRequest $request)
     {
-        //
+        $flashcard = Flashcard::findOrFail($id);
+
+        $flashcard->update($request->all());
+
+        return redirect()->action('DeckController@show', [$flashcard->deck_id]);
     }
 
     /**
@@ -82,6 +99,9 @@ class FlashcardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $flashcard = Flashcard::findOrFail($id);
+        $flashcard->delete();
+
+        return redirect()->action('DeckController@show', [$flashcard->deck_id]);
     }
 }

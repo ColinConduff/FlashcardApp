@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+use DB;
 use App\Deck;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -57,7 +58,9 @@ class DeckController extends Controller
     {
         $deck = Auth::user()->decks()->findOrFail($id);
 
-        return view('decks.showOne', compact('deck'));
+        $flashcards = DB::table('flashcards')->where('deck_id', '=', $id)->get();
+
+        return view('decks.showOne', compact('deck', 'flashcards'));
     }
 
     /**
@@ -96,7 +99,7 @@ class DeckController extends Controller
      */
     public function destroy($id)
     {
-        $deck = Auth::user()->decks()->find($id);
+        $deck = Auth::user()->decks()->findOrFail($id);
         $deck->delete();
 
         return redirect('decks');

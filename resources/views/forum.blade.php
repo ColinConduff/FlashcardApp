@@ -86,7 +86,11 @@
 			  </div>
 			</div>
 			<div>
-		    	<button type="button" class="btn btn-primary btn-lg btn-block">Create A New Post!</button>
+		    	<a href="{{ url('posts/create') }}">
+					<button type="button" class="btn btn-primary btn-lg btn-block">
+						Create a New Post!
+					</button>
+				</a>
 		    </div>
 		</div>
 
