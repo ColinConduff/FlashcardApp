@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
 use Auth;
 use App\Note;
 use App\Http\Requests;
@@ -18,7 +19,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -36,9 +37,15 @@ class NoteController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Requests\NoteRequest $request)
     {
-        //
+        $note = new Note($request->all());
+        $note['flashcard_id'] = $request->flashcard_id;
+        $note['published_at'] = Carbon::now();
+
+        Auth::user()->notes()->save($note);
+
+        return redirect() ->  action('FlashcardController@show', ['id' => $note->flashcard_id]);
     }
 
     /**
@@ -49,7 +56,9 @@ class NoteController extends Controller
      */
     public function show($id)
     {
-        //
+        $note = Note::findOrFail($id);
+
+        return view('notes.showOne', compact('note'));
     }
 
     /**
@@ -60,7 +69,9 @@ class NoteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $note = Note::findOrFail($id);
+
+        return view('notes.edit', compact('note'));
     }
 
     /**
@@ -69,9 +80,14 @@ class NoteController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, Requests\NoteRequest $request)
     {
-        //
+        $note = Note::findOrFail($id);
+        $note['published_at'] = Carbon::now();
+
+        $note->update($request->all());
+
+        return redirect()->action('FlashcardController@show', [$note->flashcard_id]);
     }
 
     /**
@@ -82,6 +98,9 @@ class NoteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $note = Note::findOrFail($id);
+        $note->delete();
+
+        return redirect()->action('FlashcardController@show', [$note->flashcard_id]);
     }
 }

@@ -56,9 +56,7 @@ Route::get('forum', ['middleware' => 'auth', function()
 Route::resource('decks', 'DeckController');
 Route::resource('posts', 'PostController');
 Route::resource('flashcards', 'FlashcardController');
-//Route::get('deck/{id}/flashcards', 'FlashcardController@index');
-//Route::get('deck/flashcards/create/{id}', 'FlashcardController@create');
-//Route::get('deck/flashcards', 'FlashcardController@store');
+Route::resource('notes', 'NoteController');
 
 /* middleware is not working
 Route::resource('flashcards', ['middleware' => 'auth', 'uses' => 'FlashcardController']);

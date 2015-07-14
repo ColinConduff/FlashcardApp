@@ -60,7 +60,9 @@ class FlashcardController extends Controller
     {
         $flashcard = Flashcard::findOrFail($id);
 
-        return view('flashcards.showOne', compact('flashcard'));
+        $notes = DB::table('notes')->where('flashcard_id', '=', $id)->get();
+
+        return view('flashcards.showOne', compact('flashcard', 'notes'));
     }
 
     /**
