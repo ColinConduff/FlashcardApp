@@ -3,7 +3,9 @@
 @section('content')
 	<div class="container">
 		
-		<h1>Create a New Deck</h1>
+		<h1 class="text-center">Create a New Deck</h1>
+
+		<a href="{{ url('decks') }}">View All Decks</a>
 	
 		<hr/>
 

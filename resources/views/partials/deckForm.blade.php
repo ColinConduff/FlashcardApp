@@ -9,11 +9,6 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('average_rating', 'Average Rating:') !!}
-	{!! Form::text('average_rating', null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
 	{!! Form::label('private', 'Private:') !!}
 	{!! Form::text('private', null, ['class' => 'form-control']) !!}
 </div>

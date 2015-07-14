@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container">
 		<h1 class="text-center">Flashcard</h1>
-		<hr/>
+		<a href="{{ url('decks', [$flashcard->deck_id]) }}">View All Decks</a>
 
 		<div style="margin-top: 2em;">
 			<table class="table">
@@ -38,10 +38,8 @@
 					</tr>
 			</table>
 		</div>
-		<a href="{{ url('flashcards') }}">View All Flashcards</a>
 
 	<h3 class="text-center">Notes</h3>
-	<hr/>
 
 	<div class="row">
 	<div class="col-md-9">

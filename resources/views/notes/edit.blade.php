@@ -2,8 +2,10 @@
 
 @section('content')
 	<div class="container">
-		<h1>Edit</h1>
+		<h1 class="text-center">Edit</h1>
 		
+		<a href="{{ url('notes') }}">View All Notes</a>
+
 		<hr/>
 
 		@include('errors.list')

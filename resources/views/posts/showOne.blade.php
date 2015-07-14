@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container">
 		<h1 class="text-center">Post</h1>
-		<hr/>
+		<a href="{{ url('posts') }}">View All Posts</a>
 
 		<div style="margin-top: 2em;">
 			<table class="table">
@@ -30,7 +30,7 @@
 							</button>
 						</td>
 						<td>
-							{!! Form::open(array('url' => 'posts/' . $post->id, 'class' => 'pull-right')) !!}
+							{!! Form::open(array('url' => 'posts/' . $post->id)) !!}
 			                    {!! Form::hidden('_method', 'DELETE') !!}
 			                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
 			                {!! Form::close() !!}
@@ -38,11 +38,8 @@
 					</tr>
 			</table>
 		</div>
-		<a href="{{ url('posts') }}">View All Posts</a>
-	
 
 	<h3 class="text-center">Comments</h3>
-	<hr/>
 
 	<div class="row">
 	<div class="col-md-9">
@@ -128,5 +125,6 @@
 	@endif
 	</div>
 	</div>
+
 
 @stop

@@ -27,7 +27,6 @@ class ReviewRequest extends Request
             'rating' => 'required',
             'title' => 'required',
             'body' => 'required',
-            'published_at' => 'required',
         ];
     }
 }

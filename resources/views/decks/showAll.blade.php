@@ -14,14 +14,9 @@
 
 	<div class="container">
 		<h1 class="text-center">Decks</h1>
-		<hr/>
-		
-		<a href="{{ url('decks/create') }}">
-		<button type="button" class="btn btn-primary btn-lg btn-block">
-			Create a New Deck!
-		</button>
-		</a>
 
+		<div class="row">
+		<div class="col-md-9">
 		<div style="margin-top: 2em;">
 		@if(count($decks))
 			<table class="table">
@@ -62,6 +57,16 @@
 				@endforeach
 			</table>
 		@endif
+		</div>
+		</div>
+
+		<div class="col-md-3">
+		<a href="{{ url('decks/create') }}">
+		<button type="button" class="btn btn-primary btn-lg" style="height: 200px;">
+			Create a New Deck!
+		</button>
+		</a>
+		</div>
 		</div>
 
 	</div>

@@ -39,9 +39,15 @@ class ReviewController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Requests\ReviewRequest $request)
     {
-        //
+        $review = new Review($request->all());
+        $review['deck_id'] = $request->deck_id;
+        $review['published_at'] = Carbon::now();
+
+        Auth::user()->reviews()->save($review);
+
+        return redirect() ->  action('DeckController@show', ['id' => $review->deck_id]);
     }
 
     /**
@@ -52,7 +58,9 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        //
+        $review = Review::findOrFail($id);
+
+        return view('reviews.showOne', compact('review'));
     }
 
     /**
@@ -63,7 +71,9 @@ class ReviewController extends Controller
      */
     public function edit($id)
     {
-        //
+        $review = Review::findOrFail($id);
+
+        return view('reviews.edit', compact('review'));
     }
 
     /**
@@ -72,9 +82,14 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, Requests\ReviewRequest $request)
     {
-        //
+        $review = Review::findOrFail($id);
+        $review['published_at'] = Carbon::now();
+
+        $review->update($request->all());
+
+        return redirect()->action('DeckController@show', [$review->deck_id]);
     }
 
     /**
@@ -85,6 +100,9 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $review = Review::findOrFail($id);
+        $review->delete();
+
+        return redirect()->action('DeckController@show', [$review->deck_id]);
     }
 }

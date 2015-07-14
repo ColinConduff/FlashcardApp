@@ -14,14 +14,9 @@
 
 	<div class="container">
 		<h1 class="text-center">Posts</h1>
-		<hr/>
-		
-		<a href="{{ url('posts/create') }}">
-		<button type="button" class="btn btn-primary btn-lg btn-block">
-			Create a New Post!
-		</button>
-		</a>
 
+		<div class="row">
+		<div class="col-md-9">
 		<div style="margin-top: 2em;">
 		@if(count($posts))
 			<table class="table">
@@ -58,6 +53,16 @@
 				@endforeach
 			</table>
 		@endif
+		</div>
+		</div>
+
+		<div class="col-md-3">
+		<a href="{{ url('posts/create') }}">
+		<button type="button" class="btn btn-primary btn-lg" style="height: 200px;">
+			Create a New Post!
+		</button>
+		</a>
+		</div>
 		</div>
 
 	</div>

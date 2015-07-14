@@ -14,7 +14,6 @@
 
 	<div class="container">
 		<h1 class="text-center">Notes</h1>
-		<hr/>
 
 		<div style="margin-top: 2em;">
 		@if(count($notes))

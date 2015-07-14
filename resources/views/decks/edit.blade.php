@@ -2,7 +2,9 @@
 
 @section('content')
 	<div class="container">
-		<h1>Edit: {!! $deck->title !!}</h1>
+		<h1 class="text-center">Edit: {!! $deck->title !!}</h1>
+
+		<a href="{{ url('decks') }}">View All Decks</a>
 		
 		<hr/>
 

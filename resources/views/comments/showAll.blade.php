@@ -14,7 +14,6 @@
 
 	<div class="container">
 		<h1 class="text-center">Comments</h1>
-		<hr/>
 
 		<div style="margin-top: 2em;">
 		@if(count($comments))
@@ -53,6 +52,8 @@
 					</tr>
 				@endforeach
 			</table>
+		@else
+		<h3 class="text-center">Nothing to see here...</h3>
 		@endif
 		</div>
 	</div>

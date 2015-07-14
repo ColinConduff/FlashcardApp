@@ -60,7 +60,9 @@ class DeckController extends Controller
 
         $flashcards = DB::table('flashcards')->where('deck_id', '=', $id)->get();
 
-        return view('decks.showOne', compact('deck', 'flashcards'));
+        $reviews = DB::table('reviews')->where('deck_id', '=', $id)->get();
+
+        return view('decks.showOne', compact('deck', 'flashcards', 'reviews'));
     }
 
     /**

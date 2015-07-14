@@ -4,7 +4,6 @@
 
 	<div class="container">
 		<h1 class="text-center">Flashcards</h1>
-		<hr/>
 		
 		<a href="{{ url('flashcards/create') }}">
 		<button type="button" class="btn btn-primary btn-lg btn-block">
