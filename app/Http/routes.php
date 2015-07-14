@@ -57,6 +57,8 @@ Route::resource('decks', 'DeckController');
 Route::resource('posts', 'PostController');
 Route::resource('flashcards', 'FlashcardController');
 Route::resource('notes', 'NoteController');
+Route::resource('comments', 'CommentController');
+Route::resource('reviews', 'ReviewController');
 
 /* middleware is not working
 Route::resource('flashcards', ['middleware' => 'auth', 'uses' => 'FlashcardController']);

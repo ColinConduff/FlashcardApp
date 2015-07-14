@@ -39,5 +39,94 @@
 			</table>
 		</div>
 		<a href="{{ url('posts') }}">View All Posts</a>
+	
+
+	<h3 class="text-center">Comments</h3>
+	<hr/>
+
+	<div class="row">
+	<div class="col-md-9">
+	<div style="margin-top: 2em;">
+		@if(count($comments))
+			<table class="table">
+				<tr>
+					<th>Body</th>
+					<th>Score</th>
+					<th>Published At</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+				@foreach ($comments as $comment)
+					<tr>
+						<td>{{ $comment->body }}</td>
+						<td>{{ $comment->score }}</td>
+						<td>{{ $comment->published_at }}</td>
+						<td>
+							<button type="button" class="btn btn-info">
+								<a href="{{ url('comments', [$comment->id, 'edit']) }}">
+									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								</a>
+							</button>
+						</td>
+						<td>
+							{!! Form::open(array('url' => 'comments/' . $comment->id)) !!}
+			                    {!! Form::hidden('_method', 'DELETE') !!}
+			                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
+			                {!! Form::close() !!}
+						</td>
+					</tr>
+				@endforeach
+			</table>
+		@endif
 	</div>
+	</div>
+
+	@if(count($comments))
+		<div class="col-md-3 text-center">
+			@include('errors.list')
+			
+			{!! Form::model($post, ['url' => 'comments']) !!}
+
+			
+				<div class="form-group">
+					{!! Form::text('body', '', ['class' => 'form-control']) !!}
+				</div>
+			
+				<div hidden=true class="form-group">
+					{!! Form::label('post_id', 'Post_id:') !!}
+					{!! Form::text('post_id', $post->id, ['class' => 'form-control']) !!}
+				</div>
+			
+				<div class="form-group">
+					{!! Form::submit('Add Comment', ['class' => 'btn btn-primary form-control']) !!}
+				</div>
+			
+			{!! Form::close() !!}
+		</div>
+	@else
+		<div class="col-md-12 text-center">
+			@include('errors.list')
+			
+			{!! Form::model($post, ['url' => 'comments']) !!}
+
+			
+				<div class="form-group">
+					{!! Form::text('body', '', ['class' => 'form-control']) !!}
+				</div>
+			
+				<div hidden=true class="form-group">
+					{!! Form::label('post_id', 'Post_id:') !!}
+					{!! Form::text('post_id', $post->id, ['class' => 'form-control']) !!}
+				</div>
+			
+				<div class="form-group">
+					{!! Form::submit('Add Comment', ['class' => 'btn btn-primary form-control']) !!}
+				</div>
+			
+			{!! Form::close() !!}
+		</div>
+	@endif
+	</div>
+	</div>
+
 @stop

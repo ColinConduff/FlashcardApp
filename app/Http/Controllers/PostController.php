@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
+use DB;
 use Auth;
 use App\Post;
 use App\Http\Requests;
@@ -59,7 +60,9 @@ class PostController extends Controller
     {
         $post = Auth::user()->posts()->findOrFail($id);
 
-        return view('posts.showOne', compact('post'));
+        $comments = DB::table('comments')->where('post_id', '=', $id)->get();
+
+        return view('posts.showOne', compact('post', 'comments'));
     }
 
     /**

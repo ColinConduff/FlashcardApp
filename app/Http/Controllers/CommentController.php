@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
 use Auth;
 use App\Comment;
 use App\Http\Requests;
@@ -18,7 +19,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Auth::user()->comments()->get();
+    
+        return view('comments.showAll', compact('comments'));
     }
 
     /**
@@ -28,7 +31,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -36,9 +39,15 @@ class CommentController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Requests\CommentRequest $request)
     {
-        //
+        $comment = new Comment($request->all());
+        $comment['post_id'] = $request->post_id;
+        $comment['published_at'] = Carbon::now();
+
+        Auth::user()->comments()->save($comment);
+
+        return redirect()-> action('PostController@show', ['id' => $comment->post_id]);
     }
 
     /**
@@ -49,7 +58,9 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+
+        return view('comments.showOne', compact('comment'));
     }
 
     /**
@@ -60,7 +71,9 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+
+        return view('comments.edit', compact('comment'));
     }
 
     /**
@@ -69,9 +82,14 @@ class CommentController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, Requests\CommentRequest $request)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $comment['published_at'] = Carbon::now();
+
+        $comment->update($request->all());
+
+        return redirect()->action('PostController@show', [$comment->post_id]);
     }
 
     /**
@@ -82,6 +100,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+
+        return redirect()->action('PostController@show', [$comment->post_id]);
     }
 }

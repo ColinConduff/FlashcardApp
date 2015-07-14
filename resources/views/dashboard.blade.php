@@ -101,7 +101,7 @@
 				</tr>
 				@foreach ($notes as $note)
 					<tr>
-						<td><a href="{{ url('notes', [$note->id]) }}">{{ $note->body }}</a></td>
+						<td>{{ $note->body }}</td>
 						<td>{{ $note->score }}</td>
 						<td>{{ $note->published_at }}</td>
 					</tr>
@@ -163,7 +163,7 @@
 				</tr>
 				@foreach ($comments as $comment)
 					<tr>
-						<td><a href="{{ url('comments', [$comment->id]) }}">{{ $comment->body }}</a></td>
+						<td>{{ $comment->body }}</td>
 						<td>{{ $comment->score }}</td>
 						<td>{{ $comment->published_at }}</td>
 					</tr>

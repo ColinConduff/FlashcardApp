@@ -24,9 +24,7 @@ class CommentRequest extends Request
     public function rules()
     {
         return [
-            'score' => 'required',
             'body' => 'required',
-            'published_at' => 'required',
         ];
     }
 }
