@@ -42,6 +42,7 @@ class DeckController extends Controller
     public function store(Requests\DeckRequest $request)
     {
         $deck = new Deck($request->all());
+        $deck['average_rating'] = 0;
 
         Auth::user()->decks()->save($deck);
 

@@ -24,7 +24,6 @@ class DeckRequest extends Request
     public function rules()
     {
         return [
-            'average_rating' => 'required',
             'title' => 'required',
             'subject' => 'required',
             'private' => 'required',
