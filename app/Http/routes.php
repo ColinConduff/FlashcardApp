@@ -11,7 +11,6 @@
 |
 */
 
-/* Temporary routes */
 Route::get('/', function()
 {
     return view('home');
@@ -42,10 +41,51 @@ Route::get('studyBack', ['middleware' => 'auth', function()
     return view('studyBack');
 }]);
 
-Route::get('browse', ['middleware' => 'auth',  function()
-{
-    return view('browse');
-}]);
+Route::get('browseTitleAsc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseByTitleAsc'
+]);
+Route::get('browseTitleDesc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseByTitleDesc'
+]);
+Route::get('browseUsernameAsc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseByUsernameAsc'
+]);
+Route::get('browseUsernameDesc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseByUsernameDesc'
+]);
+Route::get('browseRatingAsc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseByRatingAsc'
+]);
+Route::get('browseRatingDesc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseByRatingDesc'
+]);
+Route::get('browseSubjectAsc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseBySubjectAsc'
+]);
+Route::get('browseSubjectDesc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseBySubjectDesc'
+]);
+Route::get('browseFlashAsc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseByFlashAsc'
+]);
+Route::get('browseFlashDesc', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseByFlashDesc'
+]);
+Route::post('browseSearchBar', [
+	'middleware' => 'auth',  
+	'uses' => 'BrowseController@browseSearchBar'
+]);
+
 
 Route::get('forum', ['middleware' => 'auth', function()
 {

@@ -29,7 +29,7 @@
       <ul class="nav navbar-nav">
         <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
         <li><a href="{{ url('/study') }}">Study</a></li>
-        <li><a href="{{ url('/browse') }}">Browse</a></li>
+        <li><a href="{{ url('/browseTitleDesc') }}">Browse</a></li>
         <li><a href="{{ url('/forum') }}">Forum</a></li>
       </ul>
 
