@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+use DB;
 use App\User;
 use App\Deck;
 use App\Http\Requests;
@@ -120,4 +121,15 @@ class BrowseController extends Controller
 
     	return view('browse', compact('decks'));
 	}
+
+    public function showProtectedDeck($id)
+    {
+        $deck = Deck::findOrFail($id);
+
+        $flashcards = DB::table('flashcards')->where('deck_id', '=', $id)->get();
+
+        $reviews = DB::table('reviews')->where('deck_id', '=', $id)->get();
+
+        return view('decks.protectedShowOne', compact('deck', 'flashcards', 'reviews'));
+    }
 }

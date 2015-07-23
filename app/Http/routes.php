@@ -86,12 +86,43 @@ Route::post('browseSearchBar', [
 	'uses' => 'BrowseController@browseSearchBar'
 ]);
 
+Route::get('showProtectedDeck/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'BrowseController@showProtectedDeck'
+]);
 
-Route::get('forum', ['middleware' => 'auth', function()
-{
-    return view('forum');
-}]);
+Route::get('study', [
+	'middleware' => 'auth', 
+	'uses' => 'StudyController@sendListOfDecks'
+]);
 
+Route::post('studySelectedDecks', [
+	'middleware' => 'auth', 
+	'uses' => 'StudyController@studySelectedDecks'
+]);
+
+Route::get('studyBack/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'StudyController@studyBack'
+]);
+
+Route::get('incorrect/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'StudyController@incorrect'
+]);
+
+Route::get('correct/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'StudyController@correct'
+]);
+
+Route::get('forum', 
+	['middleware' => 'auth', function()
+		{
+		    return view('forum');
+		}
+	]
+);
 
 Route::resource('decks', 'DeckController');
 Route::resource('posts', 'PostController');
@@ -100,12 +131,6 @@ Route::resource('notes', 'NoteController');
 Route::resource('comments', 'CommentController');
 Route::resource('reviews', 'ReviewController');
 
-/* middleware is not working
-Route::resource('flashcards', ['middleware' => 'auth', 'uses' => 'FlashcardController']);
-Route::resource('notes', ['middleware' => 'auth', 'uses' => 'ForumController']);
-Route::resource('comments', ['middleware' => 'auth', 'uses' => 'MessageController']);
-Route::resource('reviews', ['middleware' => 'auth', 'uses' => 'ReviewController']);
-*/
 // Authentication routes... 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

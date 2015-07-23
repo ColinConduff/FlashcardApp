@@ -8,48 +8,23 @@
 
 		@yield('studyContent')
 
-		<form>
+		@include('errors.list')
 
-		<div class="well well-lg text-center"> 
-		<div class="row">
-		  <div class="col-sm-6">
-		    <div class="checkbox">
-			    <label>
-			      <input type="checkbox"> DeckTitle1
-			    </label>
-			  </div>
-		  </div><!-- /.col-sm-6 -->
-		  <div class="col-sm-6">
-		    <div class="checkbox">
-			    <label>
-			      <input type="checkbox"> DeckTitle2
-			    </label>
-			  </div>
-		  </div><!-- /.col-sm-6 -->
-		</div><!-- /.row -->
-		<div class="row">
-		  <div class="col-sm-6">
-		    <div class="checkbox">
-			    <label>
-			      <input type="checkbox"> DeckTitle3
-			    </label>
-			  </div>
-		  </div><!-- /.col-sm-6 -->
-		  <div class="col-sm-6">
-		    <div class="checkbox">
-			    <label>
-			      <input type="checkbox"> DeckTitle4
-			    </label>
-			  </div>
-		  </div><!-- /.col-sm-6 -->
-		</div><!-- /.row -->
-		</div>
+		{!! Form::open(['url' => 'studySelectedDecks']) !!}
+		    {{--
+			    <div hidden=true class="form-group">
+					{!! Form::text('deck_id', $deck->id, ['class' => 'form-control']) !!}
+				</div>
+			--}}
 
-		<div>
-			<button type="submit" class="btn btn-primary btn-lg btn-block">Study</button>
-		</div>
+		    <div class="form-group">
+			    {!! Form::select('id[]', $decks, null, ['id' => 'deck_list', 'class' => 'form-control', 'multiple', 'style' => 'width:100%']) !!}
+			</div>
 
-		</form>
+			<div class="form-group">
+				{!! Form::submit('Study', ['class' => 'btn btn-primary form-control']) !!}
+			</div>
+		{!! Form::close() !!}
 
 	</div>
 

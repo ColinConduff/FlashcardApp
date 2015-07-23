@@ -65,7 +65,7 @@
 		  </tr>
 		  @foreach ($decks as $deck)
 				<tr>
-					<td><a href="{{ url('decks', [$deck->id]) }}">{{ $deck->title }}</a></td>
+					<td><a href="{{ url('showProtectedDeck', [$deck->id]) }}">{{ $deck->title }}</a></td>
 					<td>{{ $deck->user->name }}</td>
 					<td>{{ $deck->average_rating }}</td>
 					<td>{{ $deck->subject }}</td>
