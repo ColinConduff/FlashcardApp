@@ -14,7 +14,7 @@
 </div>
 
 <div hidden=true class="form-group">
-	{!! Form::label('deck_id', 'Flashcard_id:') !!}
+	{!! Form::label('deck_id', 'Deck id:') !!}
 	{!! Form::text('deck_id', null, ['class' => 'form-control']) !!}
 </div>
 

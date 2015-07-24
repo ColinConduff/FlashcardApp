@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    /*
+        This defines the Post model and defines 
+        its relationships with other models.
+    */
     protected $fillable = [
         'user_id',
         'title',

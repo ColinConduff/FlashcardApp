@@ -7,6 +7,8 @@
 		
 		<hr/>
 
+		{{-- This is a form for editing a post --}}
+		
 		@include('errors.list')
 
 		{!! Form::model($post, ['method' => 'PATCH', 'action' => ['PostController@update', $post->id]]) !!}

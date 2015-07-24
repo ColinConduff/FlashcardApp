@@ -8,6 +8,8 @@
 
 		<hr/>
 
+		{{-- This is a form for editing notes --}}
+		
 		@include('errors.list')
 
 		{!! Form::model($note, ['method' => 'PATCH', 'action' => ['NoteController@update', $note->id]]) !!}

@@ -11,6 +11,9 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
+    /*
+        Displays all of the data related to the user.  
+    */
     public function displayDashboard() 
     {
         $user = Auth::user();

@@ -3,23 +3,29 @@
 @section('content')
 
 	<div class="container">
+		
 		<h1 class="text-center">Browse Decks</h1>
 		<hr/>
 
+		{{-- This implements a search bar that searches for deck titles --}}
 	    @include('errors.list')
 		
 		<div class="row">
-		{!! Form::open(['url' => 'browseSearchBar']) !!}
-		    <div class="form-group col-sm-10">
-				{!! Form::text('title', 'Deck Title', ['class' => 'form-control']) !!}
-			</div>
+			{!! Form::open(['url' => 'browseSearchBar']) !!}
+			    <div class="form-group col-sm-10">
+					{!! Form::text('title', 'Deck Title', ['class' => 'form-control']) !!}
+				</div>
 
-			<div class="form-group col-sm-2">
-				{!! Form::submit('Submit', ['class' => 'btn btn-default form-control']) !!}
-			</div>
-		{!! Form::close() !!}
+				<div class="form-group col-sm-2">
+					{!! Form::submit('Submit', ['class' => 'btn btn-default form-control']) !!}
+				</div>
+			{!! Form::close() !!}
 		</div>
 
+		{{-- 
+			This table contains links that filter the list of 
+			public decks by various parameters
+		--}}
 		<table class="table table-striped" style="width:100%">
 		  <tr>
 		    <th>Title
@@ -63,6 +69,11 @@
 		    	</a>
 		    </th>
 		  </tr>
+
+		  {{-- 
+		  		This prints out the deck's title, username, 
+		  		rating, subject, and number of flashcards 
+		  --}}
 		  @foreach ($decks as $deck)
 				<tr>
 					<td><a href="{{ url('showProtectedDeck', [$deck->id]) }}">{{ $deck->title }}</a></td>

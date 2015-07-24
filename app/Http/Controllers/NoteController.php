@@ -13,15 +13,15 @@ use App\Http\Controllers\Controller;
 class NoteController extends Controller
 {
     /**
-     * Instantiate a new UserController instance.
+     * Prevents access by non-logged in users.
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of the note.
      *
      * @return Response
      */
@@ -33,7 +33,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new note.
      *
      * @return Response
      */
@@ -43,7 +43,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created note in storage.
      *
      * @return Response
      */
@@ -59,7 +59,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified note.
      *
      * @param  int  $id
      * @return Response
@@ -72,7 +72,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified note.
      *
      * @param  int  $id
      * @return Response
@@ -85,7 +85,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified note in storage.
      *
      * @param  int  $id
      * @return Response
@@ -101,7 +101,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified note from storage.
      *
      * @param  int  $id
      * @return Response

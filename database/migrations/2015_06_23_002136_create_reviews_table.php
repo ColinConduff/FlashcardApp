@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 class CreateReviewsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Creates the reviews table with the columns user_id, 
+     * deck_id, rating, title, body, published_at
      *
      * @return void
      */

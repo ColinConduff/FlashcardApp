@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Creates the users table with the columns id, name, email, password
      *
      * @return void
      */

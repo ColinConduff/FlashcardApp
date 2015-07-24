@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 class CreateDecksTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Creates the decks table with the columns id, 
+     * user_id, average_rating, title, subject, private
      *
      * @return void
      */

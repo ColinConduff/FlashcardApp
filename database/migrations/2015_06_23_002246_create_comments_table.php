@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCommentsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Creates the comments table.
      *
      * @return void
      */

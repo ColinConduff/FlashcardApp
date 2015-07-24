@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
+	/*
+    	This defines the Review model and defines 
+    	its relationships with other models.
+    */
     protected $fillable = [
 		'rating',
 		'title',

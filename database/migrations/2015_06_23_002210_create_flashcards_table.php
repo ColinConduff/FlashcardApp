@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 class CreateFlashcardsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Creates the flashcards table with the columns id, deck_id, front, 
+     * back, number of attempts, number correct, ratio correct
      *
      * @return void
      */

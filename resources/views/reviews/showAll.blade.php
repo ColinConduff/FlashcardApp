@@ -12,6 +12,8 @@
 		</ul>
 	</div>
 
+	{{-- This shows the user all of their reviews --}}
+	
 	<div class="container">
 		<h1 class="text-center">Reviews</h1>
 

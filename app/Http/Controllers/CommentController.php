@@ -13,15 +13,15 @@ use App\Http\Controllers\Controller;
 class CommentController extends Controller
 {
     /**
-     * Instantiate a new UserController instance.
+     * Prevents access by non-logged in users.
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     /**
-     * Display a listing of the resource.
+     * Shows all comments associated with the logged in user.
      *
      * @return Response
      */
@@ -33,17 +33,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created comment in storage.
      *
      * @return Response
      */
@@ -59,7 +49,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Displays one comment.
      *
      * @param  int  $id
      * @return Response
@@ -72,7 +62,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the comment.
      *
      * @param  int  $id
      * @return Response
@@ -85,7 +75,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the comment in storage.
      *
      * @param  int  $id
      * @return Response
@@ -101,7 +91,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the comment from storage.
      *
      * @param  int  $id
      * @return Response

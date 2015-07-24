@@ -12,6 +12,8 @@
 		</ul>
 	</div>
 
+	{{-- This shows a user all of their comments --}}
+
 	<div class="container">
 		<h1 class="text-center">Comments</h1>
 

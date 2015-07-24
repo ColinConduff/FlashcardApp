@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateNotesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Creates the notes table with the columns id, user_id, flashcard_id, score, body
      *
      * @return void
      */

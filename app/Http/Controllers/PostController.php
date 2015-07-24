@@ -14,15 +14,15 @@ use App\Http\Controllers\Controller;
 class PostController extends Controller
 {
     /**
-     * Instantiate a new UserController instance.
+     * Prevents access by non-logged in users.
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of the post.
      *
      * @return Response
      */
@@ -34,7 +34,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new post.
      *
      * @return Response
      */
@@ -44,7 +44,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created post in storage.
      *
      * @return Response
      */
@@ -59,7 +59,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified post.
      *
      * @param  int  $id
      * @return Response
@@ -74,7 +74,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified post.
      *
      * @param  int  $id
      * @return Response
@@ -87,7 +87,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified post in storage.
      *
      * @param  int  $id
      * @return Response
@@ -102,7 +102,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified post from storage.
      *
      * @param  int  $id
      * @return Response

@@ -6,7 +6,13 @@
 		<h1 class="text-center">Study</h1>
 		<hr/>
 
+		{{-- This grabs content in the studyFront and studyBack views --}}
 		@yield('studyContent')
+
+		{{-- 
+			This is a form that allows users to select 
+			several decks to study flashcards from. 
+		--}}
 
 		@include('errors.list')
 

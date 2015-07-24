@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
+	/*
+    	This defines the Note model and defines 
+    	its relationships with other models.
+    */
     protected $fillable = [
         'user_id',
         'flashcard_id',

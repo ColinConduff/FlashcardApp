@@ -1,6 +1,12 @@
 @extends('app')
 
 @section('content')
+	
+	{{-- 
+		The following code shows users their 
+		flashcards and the notes associated with them. 
+	--}}
+	
 	<div class="container">
 		<h1 class="text-center">Flashcard</h1>
 		<a href="{{ url('decks', [$flashcard->deck_id]) }}">View All Decks</a>

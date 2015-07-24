@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    /*
+    	This defines the Comment model and defines 
+    	its relationships with other models.
+    */
     protected $fillable = [
 		'user_id',
         'post_id',

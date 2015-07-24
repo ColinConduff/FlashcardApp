@@ -6,6 +6,8 @@
 		
 		<hr/>
 
+		{{-- This is a form for editing flashcards --}}
+		
 		@include('errors.list')
 
 		{!! Form::model($flashcard, ['method' => 'PATCH', 'action' => ['FlashcardController@update', $flashcard->id]]) !!}

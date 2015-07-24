@@ -14,37 +14,15 @@ use App\Http\Controllers\Controller;
 class FlashcardController extends Controller
 {
     /**
-     * Instantiate a new UserController instance.
+     * Prevents access by non-logged in users.
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        // $flashcards = DB::table('flashcards')->where('deck_id', '=', $id)->get();
-
-        // return view('flashcards.showAll', compact('flashcards'));
-    }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    // public function create()
-    // {
-    //     return view('decks.create');
-    // }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created flashcard in storage.
      *
      * @return Response
      */
@@ -59,7 +37,7 @@ class FlashcardController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified flashcard.
      *
      * @param  int  $id
      * @return Response
@@ -74,7 +52,7 @@ class FlashcardController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified flashcard.
      *
      * @param  int  $id
      * @return Response
@@ -87,7 +65,7 @@ class FlashcardController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified flashcard in storage.
      *
      * @param  int  $id
      * @return Response
@@ -102,7 +80,7 @@ class FlashcardController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified flashcard from storage.
      *
      * @param  int  $id
      * @return Response

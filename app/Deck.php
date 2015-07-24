@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Deck extends Model
 {
+	/*
+    	This defines the Deck model and defines 
+    	its relationships with other models.
+    */
     protected $fillable = [
 		'average_rating',
 	    'title',

@@ -9,6 +9,8 @@
 	
 		<hr/>
 
+		{{-- This is a form for creating decks. --}}
+
 		@include('errors.list')
 
 		{!! Form::open(['url' => 'decks']) !!}

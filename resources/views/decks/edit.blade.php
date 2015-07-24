@@ -8,6 +8,8 @@
 		
 		<hr/>
 
+		{{-- This form allows users to edit a deck --}}
+
 		@include('errors.list')
 
 		{!! Form::model($deck, ['method' => 'PATCH', 'action' => ['DeckController@update', $deck->id]]) !!}

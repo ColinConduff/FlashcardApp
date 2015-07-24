@@ -7,21 +7,22 @@ use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
 use App\Review;
+use App\Deck;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class ReviewController extends Controller
 {
     /**
-     * Instantiate a new UserController instance.
+     * Prevents access by non-logged in users.
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of the review.
      *
      * @return Response
      */
@@ -33,33 +34,26 @@ class ReviewController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created review in storage and update deck average rating.
      *
      * @return Response
      */
     public function store(Requests\ReviewRequest $request)
     {
         $review = new Review($request->all());
-        $review['deck_id'] = $request->deck_id;
         $review['published_at'] = Carbon::now();
 
         Auth::user()->reviews()->save($review);
 
-        return redirect() ->  action('DeckController@show', ['id' => $review->deck_id]);
+        $deck = Deck::findOrFail($request->deck_id);
+        $deck->average_rating = (($deck->average_rating + $request->rating) / 2);
+        $deck->update();
+
+        return redirect()->action('BrowseController@showProtectedDeck', ['id' => $review->deck_id]);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified review.
      *
      * @param  int  $id
      * @return Response
@@ -72,7 +66,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified review.
      *
      * @param  int  $id
      * @return Response
@@ -85,7 +79,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified review in storage.
      *
      * @param  int  $id
      * @return Response
@@ -97,11 +91,15 @@ class ReviewController extends Controller
 
         $review->update($request->all());
 
-        return redirect()->action('DeckController@show', [$review->deck_id]);
+        $deck = Deck::findOrFail($request->deck_id);
+        $deck->average_rating = (($deck->average_rating + $request->rating) / 2);
+        $deck->update();
+
+        return redirect()->action('DeckController@showProtectedDeck', [$review->deck_id]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified review from storage.
      *
      * @param  int  $id
      * @return Response

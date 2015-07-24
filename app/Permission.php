@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
+	/*
+    	This defines the Permission model and defines 
+    	its relationships with other models.
+    */
     protected $fillable = [
         'user_id',
         'deck_id',

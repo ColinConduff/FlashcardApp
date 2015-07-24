@@ -12,6 +12,7 @@
 		</ul>
 	</div>
 
+	{{-- This shows a user all of their notes --}}
 	<div class="container">
 		<h1 class="text-center">Notes</h1>
 

@@ -1,6 +1,12 @@
 @extends('app')
 
 @section('content')
+	
+	{{-- 
+		This code is used to browse other user's decks and the 
+		flashcards and reviews associated with those decks.
+	--}}
+
 	<div class="container">
 		<h1 class="text-center">Deck: <small>{{ $deck->title }}</small></h1>
 		<a href="{{ url('browseTitleDesc') }}">Back to Browse</a>
@@ -28,10 +34,11 @@
 			</table>
 		</div>
 
+		@if(count($flashcards))
 		<h3 class="text-center">Flashcards</h3>
 
 		<div class="row">
-			<div class="col-md-9">
+			<div class="col-md-12">
 				<div style="margin-top: 2em;">
 					@if(count($flashcards))
 						<table class="table">
@@ -56,10 +63,12 @@
 				</div>
 			</div>
 		</div>
+		@endif
 
+		@if(count($reviews))
 		<div class="row">
 			<h3 class="text-center">Reviews</h3>
-			<div class="col-md-9">
+			<div class="col-md-12">
 				<div style="margin-top: 2em;">
 					@if(count($reviews))
 						<table class="table">
@@ -81,6 +90,39 @@
 					@endif
 				</div>
 			</div>
+		</div>
+		@endif
+
+		<div class="well">
+			@include('errors.list')
+
+			{!! Form::open(['url' => 'reviews']) !!}
+			
+				<div class="form-group">
+					{!! Form::label('title', 'Title:') !!}
+					{!! Form::text('title', null, ['class' => 'form-control']) !!}
+				</div>
+
+				<div class="form-group">
+					{!! Form::label('body', 'Body:') !!}
+					{!! Form::text('body', null, ['class' => 'form-control']) !!}
+				</div>
+
+				<div class="form-group">
+					{!! Form::label('rating', 'Rating:') !!}
+					{!! Form::text('rating', null, ['class' => 'form-control']) !!}
+				</div>
+
+				<div hidden=true class="form-group">
+					{!! Form::label('deck_id', 'Deck id:') !!}
+					{!! Form::text('deck_id', $deck->id, ['class' => 'form-control']) !!}
+				</div>
+
+				<div class="form-group">
+					{!! Form::submit('Write a Review', ['class' => 'btn btn-primary form-control']) !!}
+				</div>
+
+			{!! Form::close() !!}
 		</div>
 
 	</div>

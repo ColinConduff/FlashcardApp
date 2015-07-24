@@ -1,46 +1,34 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
+	When users go to the root url, they are sent home.blade.php
 */
-
 Route::get('/', function()
 {
     return view('home');
 });
 
+/*
+	When users go to the root url, they are sent home.blade.php
+*/
 Route::get('/home', function()
 {
     return view('home');
 });
 
+/* 
+	When users go to the /dashboard url, the displayDashboard function
+	on the DashboardController is called.
+*/
 Route::get('dashboard', [
 	'middleware' => 'auth', 
 	'uses' => 'DashboardController@displayDashboard'
 ]);
 
-Route::get('study', ['middleware' => 'auth', function()
-{
-    return view('study');
-}]);
-
-Route::get('studyFront', ['middleware' => 'auth', function()
-{
-    return view('studyFront');
-}]);
-
-Route::get('studyBack', ['middleware' => 'auth', function()
-{
-    return view('studyBack');
-}]);
-
+/*
+	The following routes call various functions on the BrowseController.
+	These functions sort the public decks by various attributes/columns.
+*/
 Route::get('browseTitleAsc', [
 	'middleware' => 'auth',  
 	'uses' => 'BrowseController@browseByTitleAsc'
@@ -91,6 +79,59 @@ Route::get('showProtectedDeck/{id}', [
 	'uses' => 'BrowseController@showProtectedDeck'
 ]);
 
+// Begin routes added by kittipak
+// Route::get('browseTitlePostAsc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browseTitlePostAsc'
+// ]);
+// Route::get('browseTitlePostDesc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browseTitlePostDesc'
+// ]);
+// Route::get('browseUsernamePostAsc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browseUsernamePostAsc'
+// ]);
+// Route::get('browseUsernamePostDesc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browseUsernamePostDesc'
+// ]);
+// Route::get('browseTopicPostAsc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browseTopicPostAsc'
+// ]);
+// Route::get('browseTopicPostDesc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browseTopicPostDesc'
+// ]);
+// Route::get('browsePublishDatePostAsc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browsePublishDatePostAsc'
+// ]);
+// Route::get('browsePublishDatePostDesc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browsePublishDatePostDesc'
+// ]);
+// Route::get('browseScorePostAsc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browseScorePostAsc'
+// ]);
+// Route::get('browseScorePostDesc', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browseScorePostDesc'
+// ]);
+// Route::post('browseSearchBarPost', [
+//     'middleware' => 'auth',
+//     'uses' => 'ForumController@browseSearchBarPost'
+// ]);
+// Route::get('posts/{id}', 'PostController@show_post_forum');
+// Route::post('AddComment', 'CommentController@store');
+// End routes added by kittipak
+
+/*
+	The following routes call the various functions on the StudyController.
+	These functions allow users to select multiple decks to study flashcards from.
+*/
 Route::get('study', [
 	'middleware' => 'auth', 
 	'uses' => 'StudyController@sendListOfDecks'
@@ -116,14 +157,10 @@ Route::get('correct/{id}', [
 	'uses' => 'StudyController@correct'
 ]);
 
-Route::get('forum', 
-	['middleware' => 'auth', function()
-		{
-		    return view('forum');
-		}
-	]
-);
-
+/*
+	The following lines produce routes for the create, update, delete, and retrieve
+	functions on the controllers.
+*/
 Route::resource('decks', 'DeckController');
 Route::resource('posts', 'PostController');
 Route::resource('flashcards', 'FlashcardController');

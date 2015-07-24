@@ -7,6 +7,8 @@
 	
 		<hr/>
 
+		{{-- This is a form for creating a post --}}
+		
 		@include('errors.list')
 
 		{!! Form::open(['url' => 'posts']) !!}

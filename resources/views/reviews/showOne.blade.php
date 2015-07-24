@@ -6,6 +6,7 @@
 		<h1 class="text-center">Review:  {{ $review->title }}</h1>
 		<a href="{{ url('reviews') }}">View All Reviews</a>
 
+		{{-- This shows a user one of their reviews --}}
 		<div style="margin-top: 2em;">
 			<table class="table">
 				<tr>

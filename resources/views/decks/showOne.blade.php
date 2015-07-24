@@ -1,6 +1,12 @@
 @extends('app')
 
 @section('content')
+	
+	{{-- 
+		The following code shows users their decks and the 
+		flashcards and reviews associated with those decks. 
+	--}}
+
 	<div class="container">
 		<h1 class="text-center">Deck: {{ $deck->title }}</h1>
 		<a href="{{ url('decks') }}">View All Decks</a>
@@ -86,7 +92,7 @@
 		</div>
 		</div>
 
-		@if(count($reviews))
+		@if(count($flashcards))
 		<div class="col-md-3 text-center">
 		@include('errors.list')
 		

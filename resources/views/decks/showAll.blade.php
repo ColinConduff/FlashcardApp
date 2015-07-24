@@ -12,6 +12,8 @@
 		</ul>
 	</div>
 
+	{{-- The following code shows the user all of their decks.  --}}
+
 	<div class="container">
 		<h1 class="text-center">Decks</h1>
 

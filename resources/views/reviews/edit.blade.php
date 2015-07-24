@@ -8,10 +8,13 @@
 		
 		<hr/>
 
+		{{-- This is a form for editing a review. --}}
+		
 		@include('errors.list')
 
 		{!! Form::model($review, ['method' => 'PATCH', 'action' => ['ReviewController@update', $review->id]]) !!}
 			@include('partials.reviewForm', ['submitButtonText' => 'Edit Review'])
 		{!! Form::close() !!}
+
 	</div>
 @stop
