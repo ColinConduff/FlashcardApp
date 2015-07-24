@@ -7,7 +7,12 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "illuminate/html": "^5.0@dev"
+        "illuminate/html": "^5.0@dev",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~4.0",
+        "phpspec/phpspec": "~2.1",
+        "nesbot/carbon": "~1.14"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -48,8 +53,5 @@
         "preferred-install": "dist"
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {
-        "nesbot/carbon": "~1.14"
-    }
+    "prefer-stable": true
 }
