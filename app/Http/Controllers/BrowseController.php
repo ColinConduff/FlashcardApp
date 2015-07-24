@@ -8,6 +8,7 @@ use Auth;
 use DB;
 use App\User;
 use App\Deck;
+use App\Flashcard;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -173,5 +174,15 @@ class BrowseController extends Controller
         $reviews = DB::table('reviews')->where('deck_id', '=', $id)->get();
 
         return view('decks.protectedShowOne', compact('deck', 'flashcards', 'reviews'));
+    }
+
+    /*
+        Shows one flashcard at a time without edit and delete functionality 
+    */
+    public function showProtectedFlashcard($id)
+    {
+        $flashcard = Flashcard::with('notes')->findOrFail($id);
+
+        return view('flashcards.protectedShowOne', compact('flashcard'));
     }
 }

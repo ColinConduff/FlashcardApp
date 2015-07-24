@@ -51,7 +51,7 @@
 							</tr>
 							@foreach ($flashcards as $flashcard)
 								<tr>
-									<td><a href="{{ url('flashcards', [$flashcard->id]) }}">{{ $flashcard->front }}</a></td>
+									<td><a href="{{ url('showProtectedFlashcard', [$flashcard->id]) }}">{{ $flashcard->front }}</a></td>
 									<td>{{ $flashcard->back }}</td>
 									<td>{{ $flashcard->number_of_attempts }}</td>
 									<td>{{ $flashcard->number_correct }}</td>

@@ -31,7 +31,7 @@
           <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
           <li><a href="{{ url('/study') }}">Study</a></li>
           <li><a href="{{ url('/browseTitleDesc') }}">Browse</a></li>
-          <li><a href="{{ url('/forumPostDesc') }}">Forum</a></li>
+          <li><a href="{{ url('/forumTitleDesc') }}">Forum</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

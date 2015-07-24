@@ -79,54 +79,82 @@ Route::get('showProtectedDeck/{id}', [
 	'uses' => 'BrowseController@showProtectedDeck'
 ]);
 
-// Begin routes added by kittipak
-// Route::get('browseTitlePostAsc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browseTitlePostAsc'
-// ]);
-// Route::get('browseTitlePostDesc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browseTitlePostDesc'
-// ]);
-// Route::get('browseUsernamePostAsc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browseUsernamePostAsc'
-// ]);
-// Route::get('browseUsernamePostDesc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browseUsernamePostDesc'
-// ]);
-// Route::get('browseTopicPostAsc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browseTopicPostAsc'
-// ]);
-// Route::get('browseTopicPostDesc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browseTopicPostDesc'
-// ]);
-// Route::get('browsePublishDatePostAsc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browsePublishDatePostAsc'
-// ]);
-// Route::get('browsePublishDatePostDesc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browsePublishDatePostDesc'
-// ]);
-// Route::get('browseScorePostAsc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browseScorePostAsc'
-// ]);
-// Route::get('browseScorePostDesc', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browseScorePostDesc'
-// ]);
-// Route::post('browseSearchBarPost', [
-//     'middleware' => 'auth',
-//     'uses' => 'ForumController@browseSearchBarPost'
-// ]);
-// Route::get('posts/{id}', 'PostController@show_post_forum');
-// Route::post('AddComment', 'CommentController@store');
-// End routes added by kittipak
+Route::get('showProtectedFlashcard/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'BrowseController@showProtectedFlashcard'
+]);
+
+/*
+	The following routes call various functions on the ForumController.
+	These functions sort the forum posts by various attributes/columns.
+*/
+Route::get('forumTitleAsc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumTitleAsc'
+]);
+Route::get('forumTitleDesc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumTitleDesc'
+]);
+Route::get('forumUsernameAsc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumUsernameAsc'
+]);
+Route::get('forumUsernameDesc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumUsernameDesc'
+]);
+Route::get('forumTopicAsc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumTopicAsc'
+]);
+Route::get('forumTopicDesc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumTopicDesc'
+]);
+Route::get('forumPublishDateAsc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumPublishDateAsc'
+]);
+Route::get('forumPublishDateDesc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumPublishDateDesc'
+]);
+Route::get('forumScoreAsc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumScoreAsc'
+]);
+Route::get('forumScoreDesc', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumScoreDesc'
+]);
+Route::post('forumSearchBar', [
+    'middleware' => 'auth',
+    'uses' => 'ForumController@forumSearchBar'
+]);
+
+Route::get('showProtectedPost/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'ForumController@showProtectedPost'
+]);
+
+/*
+	The following routes allow users to upvote posts, comments, and notes.
+*/
+Route::get('upvotePost/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'PostController@upvote'
+]);
+
+Route::get('upvoteComment/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'CommentController@upvote'
+]);
+
+Route::get('upvoteNote/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'NoteController@upvote'
+]);
 
 /*
 	The following routes call the various functions on the StudyController.

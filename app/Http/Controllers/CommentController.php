@@ -45,7 +45,7 @@ class CommentController extends Controller
 
         Auth::user()->comments()->save($comment);
 
-        return redirect()-> action('PostController@show', ['id' => $comment->post_id]);
+        return redirect()->action('ForumController@showProtectedPost', ['id' => $comment->post_id]);
     }
 
     /**
@@ -102,5 +102,13 @@ class CommentController extends Controller
         $comment->delete();
 
         return redirect()->action('PostController@show', [$comment->post_id]);
+    }
+
+    public function upvote($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->increment('score');
+
+        return redirect()->action('ForumController@showProtectedPost', [$comment->post_id]);
     }
 }

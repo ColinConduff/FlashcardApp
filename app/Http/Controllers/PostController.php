@@ -114,4 +114,12 @@ class PostController extends Controller
 
         return redirect('posts');
     }
+
+    public function upvote($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->increment('score');
+
+        return redirect()->action('ForumController@showProtectedPost', [$post->id]);
+    }
 }

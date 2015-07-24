@@ -33,16 +33,6 @@ class NoteController extends Controller
     }
 
     /**
-     * Show the form for creating a new note.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created note in storage.
      *
      * @return Response
@@ -55,7 +45,7 @@ class NoteController extends Controller
 
         Auth::user()->notes()->save($note);
 
-        return redirect() ->  action('FlashcardController@show', ['id' => $note->flashcard_id]);
+        return redirect()->action('BrowseController@showProtectedFlashcard', ['id' => $note->flashcard_id]);
     }
 
     /**
@@ -112,5 +102,13 @@ class NoteController extends Controller
         $note->delete();
 
         return redirect()->action('FlashcardController@show', [$note->flashcard_id]);
+    }
+
+    public function upvote($id)
+    {
+        $note = Note::findOrFail($id);
+        $note->increment('score');
+
+        return redirect()->action('BrowseController@showProtectedFlashcard', [$note->flashcard_id]);
     }
 }
