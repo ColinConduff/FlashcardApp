@@ -46,7 +46,7 @@ class ReviewController extends Controller
         Auth::user()->reviews()->save($review);
 
         $deck = Deck::findOrFail($request->deck_id);
-        $deck->average_rating = (($deck->average_rating + $request->rating) / 2);
+        $deck->average_rating = Review::where('deck_id', '=', $request->deck_id)->avg('rating');
         $deck->update();
 
         return redirect()->action('BrowseController@showProtectedDeck', ['id' => $review->deck_id]);
@@ -92,7 +92,7 @@ class ReviewController extends Controller
         $review->update($request->all());
 
         $deck = Deck::findOrFail($request->deck_id);
-        $deck->average_rating = (($deck->average_rating + $request->rating) / 2);
+        $deck->average_rating = Review::where('deck_id', '=', $request->deck_id)->avg('rating');
         $deck->update();
 
         return redirect()->action('DeckController@showProtectedDeck', [$review->deck_id]);

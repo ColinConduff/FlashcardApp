@@ -17,8 +17,10 @@
 	<div class="container">
 		<h1 class="text-center">Decks</h1>
 
-		<div class="row">
-		<div class="col-md-9">
+		<a href="{{ url('decks/create') }}" class="btn btn-primary btn-block">
+			Create a New Deck!
+		</a>
+
 		<div style="margin-top: 2em;">
 		@if(count($decks))
 			<table class="table">
@@ -43,11 +45,9 @@
 							@endif
 						</td>
 						<td>
-							<button type="button" class="btn btn-info">
-								<a href="{{ url('decks', [$deck->id, 'edit']) }}">
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								</a>
-							</button>
+							<a href="{{ url('decks', [$deck->id, 'edit']) }}" class="btn btn-info">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</a>
 						</td>
 						<td>
 							{!! Form::open(array('url' => 'decks/' . $deck->id)) !!}
@@ -59,16 +59,6 @@
 				@endforeach
 			</table>
 		@endif
-		</div>
-		</div>
-
-		<div class="col-md-3">
-		<a href="{{ url('decks/create') }}">
-		<button type="button" class="btn btn-primary btn-lg" style="height: 200px;">
-			Create a New Deck!
-		</button>
-		</a>
-		</div>
 		</div>
 
 	</div>

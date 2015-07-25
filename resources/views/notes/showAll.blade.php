@@ -38,11 +38,9 @@
 						<td>{{ $note->published_at }}</td>
 						<td>{{ $note->score }}</td>
 						<td>
-							<button type="button" class="btn btn-info">
-								<a href="{{ url('notes', [$note->id, 'edit']) }}">
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								</a>
-							</button>
+							<a href="{{ url('notes', [$note->id, 'edit']) }}" class="btn btn-info">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</a>
 						</td>
 						<td>
 							{!! Form::open(array('url' => 'notes/' . $note->id)) !!}

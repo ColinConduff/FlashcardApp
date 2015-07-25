@@ -9,7 +9,7 @@
 	
 	<div class="container">
 		<h1 class="text-center">Flashcard</h1>
-		<a href="{{ url('decks', [$flashcard->deck_id]) }}">View All Decks</a>
+		<a href="{{ url('decks', [$flashcard->deck_id]) }}">Back</a>
 
 		<div style="margin-top: 2em;">
 			<table class="table">
@@ -56,27 +56,12 @@
 					<th>Body</th>
 					<th>Score</th>
 					<th>Published At</th>
-					<th>Edit</th>
-					<th>Delete</th>
 				</tr>
 				@foreach ($notes as $note)
 					<tr>
 						<td>{{ $note->body }}</td>
 						<td>{{ $note->score }}</td>
 						<td>{{ $note->published_at }}</td>
-						<td>
-							<button type="button" class="btn btn-info">
-								<a href="{{ url('notes', [$note->id, 'edit']) }}">
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								</a>
-							</button>
-						</td>
-						<td>
-							{!! Form::open(array('url' => 'notes/' . $note->id)) !!}
-			                    {!! Form::hidden('_method', 'DELETE') !!}
-			                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
-			                {!! Form::close() !!}
-						</td>
 					</tr>
 				@endforeach
 			</table>

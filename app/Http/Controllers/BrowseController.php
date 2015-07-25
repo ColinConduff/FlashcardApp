@@ -185,4 +185,38 @@ class BrowseController extends Controller
 
         return view('flashcards.protectedShowOne', compact('flashcard'));
     }
+
+    /* 
+        The parameter is a deck id.  
+        The function creates a new deck with the original 
+        deck's information and flashcards, 
+        except with a new user_id = current user
+    */
+    public function cloneDeck($id)
+    {
+        $originalDeck = Deck::findOrFail($id);
+
+        $clonedDeck = new Deck;
+        $clonedDeck['average_rating'] = $originalDeck->average_rating;
+        $clonedDeck['title'] = $originalDeck->title;
+        $clonedDeck['subject'] = $originalDeck->subject;
+        $clonedDeck['private'] = $originalDeck->private;
+        Auth::user()->decks()->save($clonedDeck);
+
+        $originalFlashcards = Flashcard::where('deck_id', '=', $originalDeck->id)->get();
+        
+        foreach($originalFlashcards as $origFlashcard)
+        {
+            $cloneFlashcard = new Flashcard;
+            $cloneFlashcard['front'] = $origFlashcard->front;
+            $cloneFlashcard['back'] = $origFlashcard->back;
+            $cloneFlashcard['number_of_attempts'] = $origFlashcard->number_of_attempts;
+            $cloneFlashcard['number_correct'] = $origFlashcard->number_correct;
+            $cloneFlashcard['ratio_correct'] = $origFlashcard->ratio_correct;
+            $cloneFlashcard['deck_id'] = $clonedDeck->id;
+            $cloneFlashcard->save();
+        }
+
+        return redirect('decks');
+    }
 }

@@ -185,6 +185,13 @@ Route::get('correct/{id}', [
 	'uses' => 'StudyController@correct'
 ]);
 
+// This route calls the cloneDeck function when users go to 
+// the url cloneDeck/{id of deck}
+Route::get('cloneDeck/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'BrowseController@cloneDeck'
+]);
+
 /*
 	The following lines produce routes for the create, update, delete, and retrieve
 	functions on the controllers.

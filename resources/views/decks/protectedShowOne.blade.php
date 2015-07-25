@@ -10,12 +10,13 @@
 	<div class="container">
 		<h1 class="text-center">Deck: <small>{{ $deck->title }}</small></h1>
 		<a href="{{ url('browseTitleDesc') }}">Back to Browse</a>
+		<a href="{{ url('cloneDeck', [$deck->id]) }}" class="btn btn-primary pull-right">Clone Deck</a>
 
 		<div style="margin-top: 2em;">
 			<table class="table">
 				<tr>
 					<th>Title</th>
-					<th>Rating</th>
+					<th>Average Rating</th>
 					<th>Subject</th>
 					<th>Private</th>
 				</tr>

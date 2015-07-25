@@ -41,11 +41,9 @@
 						<td>{{ $review->rating }}</td>
 						<td>{{ $review->published_at}}</td>
 						<td>
-							<button type="button" class="btn btn-info">
-								<a href="{{ url('reviews', [$review->id, 'edit']) }}">
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								</a>
-							</button>
+							<a href="{{ url('reviews', [$review->id, 'edit']) }}" class="btn btn-info">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</a>
 						</td>
 						<td>
 							{!! Form::open(array('url' => 'reviews/' . $review->id)) !!}

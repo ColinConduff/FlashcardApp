@@ -25,11 +25,9 @@
 						<td>{{ $post->score }}</td>
 						<td>{{ $post->published_at }}</td>
 						<td>
-							<button type="button" class="btn btn-info">
-								<a href="{{ url('posts', [$post->id, 'edit']) }}">
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								</a>
-							</button>
+							<a href="{{ url('posts', [$post->id, 'edit']) }}" class="btn btn-info">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</a>
 						</td>
 						<td>
 							{!! Form::open(array('url' => 'posts/' . $post->id)) !!}
@@ -52,27 +50,12 @@
 							<th>Body</th>
 							<th>Score</th>
 							<th>Published At</th>
-							<th>Edit</th>
-							<th>Delete</th>
 						</tr>
 						@foreach ($comments as $comment)
 							<tr>
-								<td>{{ $comment->body }}</td>
+								<td><a href="{{ url('comments', [$comment->id]) }}">{{ $comment->body }}</a></td>
 								<td>{{ $comment->score }}</td>
 								<td>{{ $comment->published_at }}</td>
-								<td>
-									<button type="button" class="btn btn-info">
-										<a href="{{ url('comments', [$comment->id, 'edit']) }}">
-											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-										</a>
-									</button>
-								</td>
-								<td>
-									{!! Form::open(array('url' => 'comments/' . $comment->id)) !!}
-					                    {!! Form::hidden('_method', 'DELETE') !!}
-					                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
-					                {!! Form::close() !!}
-								</td>
 							</tr>
 						@endforeach
 					</table>
@@ -86,7 +69,6 @@
 				
 				{!! Form::model($post, ['url' => 'comments']) !!}
 
-				
 					<div class="form-group">
 						{!! Form::text('body', '', ['class' => 'form-control']) !!}
 					</div>
@@ -108,7 +90,6 @@
 				
 				{!! Form::model($post, ['url' => 'comments']) !!}
 
-				
 					<div class="form-group">
 						{!! Form::text('body', '', ['class' => 'form-control']) !!}
 					</div>
