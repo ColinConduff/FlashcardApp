@@ -170,17 +170,17 @@ Route::post('studySelectedDecks', [
 	'uses' => 'StudyController@studySelectedDecks'
 ]);
 
-Route::get('studyBack/{id}', [
+Route::get('studyBack/{id}/{deckID}', [
 	'middleware' => 'auth', 
 	'uses' => 'StudyController@studyBack'
 ]);
 
-Route::get('incorrect/{id}', [
+Route::get('incorrect/{id}/{deckID}', [
 	'middleware' => 'auth', 
 	'uses' => 'StudyController@incorrect'
 ]);
 
-Route::get('correct/{id}', [
+Route::get('correct/{id}/{deckID}', [
 	'middleware' => 'auth', 
 	'uses' => 'StudyController@correct'
 ]);

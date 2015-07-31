@@ -30,35 +30,27 @@ class StudyController extends Controller
     */
     public function studySelectedDecks(Request $request)
     {
-        $deckIDs = $request->input('id');
+        $deckID = $request->input('id');
 
-        $flashcard = DB::table('flashcards')->whereIn('deck_id', $deckIDs)->orderBy('ratio_correct', 'asc')->first();
+        $flashcard = DB::table('flashcards')->where('deck_id', '=', $deckID)->orderBy('ratio_correct', 'asc')->first();
 
-        $decks = Auth::user()->decks()
-            ->select('decks.id', 'decks.title')
-            ->lists('title', 'id');
-
-        return view('studyFront', compact('flashcard', 'decks'));
+        return view('studyFront', compact('flashcard', 'deckID'));
     }
 
     /*
         Sends the data associated with the specific flashcard to the view studyBack.blade.php 
     */
-    public function studyBack($id)
+    public function studyBack($id, $deckID)
     {
         $flashcard = Flashcard::findOrFail($id);
 
-        $decks = Auth::user()->decks()
-            ->select('decks.id', 'decks.title')
-            ->lists('title', 'id');
-
-        return view('studyBack', compact('flashcard', 'decks'));
+        return view('studyBack', compact('flashcard', 'deckID'));
     }
 
     /*
         Updates the flashcard's number of attempts, number correct, and the ratio.
     */
-    public function correct($id)
+    public function correct($id, $deckID)
     {
         $flashcard = Flashcard::findOrFail($id);
 
@@ -68,7 +60,9 @@ class StudyController extends Controller
             ['ratio_correct' => ($flashcard->number_correct/$flashcard->number_of_attempts)]
         );
 
-        return redirect()->action('StudyController@sendListOfDecks');
+        $flashcard = DB::table('flashcards')->where('deck_id', '=', $deckID)->orderBy('ratio_correct', 'asc')->first();
+
+        return view('studyFront', compact('flashcard', 'deckID'));
     }
 
     /*
@@ -83,7 +77,9 @@ class StudyController extends Controller
             ['ratio_correct' => ($flashcard->number_correct/$flashcard->number_of_attempts)]
         );
 
-        return redirect()->action('StudyController@sendListOfDecks');
+        $flashcard = DB::table('flashcards')->where('deck_id', '=', $deckID)->orderBy('ratio_correct', 'asc')->first();
+
+        return view('studyFront', compact('flashcard', 'deckID'));
     }
 
 }

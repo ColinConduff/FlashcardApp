@@ -20,7 +20,7 @@ class CreateFlashcardsTable extends Migration
             $table->text('back');
             $table->integer('number_of_attempts');
             $table->integer('number_correct');
-            $table->decimal('ratio_correct', 2, 2);
+            $table->decimal('ratio_correct', 3, 2);
             $table->timestamps();
         });
     }
