@@ -28,7 +28,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Auth::user()->reviews()->get();
+        $reviews = Auth::user()->reviews()->paginate(5);
 
         return view('reviews.showAll', compact('reviews'));
     }

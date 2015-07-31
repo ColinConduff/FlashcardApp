@@ -27,7 +27,7 @@ class DeckController extends Controller
      */
     public function index()
     {
-        $decks = Auth::user()->decks()->get();
+        $decks = Auth::user()->decks()->paginate(5);
 
         return view('decks.showAll', compact('decks'));
     }
@@ -67,9 +67,9 @@ class DeckController extends Controller
     {
         $deck = Auth::user()->decks()->findOrFail($id);
 
-        $flashcards = DB::table('flashcards')->where('deck_id', '=', $id)->get();
+        $flashcards = DB::table('flashcards')->where('deck_id', '=', $id)->paginate(5);
 
-        $reviews = DB::table('reviews')->where('deck_id', '=', $id)->get();
+        $reviews = DB::table('reviews')->where('deck_id', '=', $id)->paginate(5);
 
         return view('decks.showOne', compact('deck', 'flashcards', 'reviews'));
     }

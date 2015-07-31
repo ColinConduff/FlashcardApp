@@ -27,7 +27,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Auth::user()->notes()->get();
+        $notes = Auth::user()->notes()->paginate(5);
     
         return view('notes.showAll', compact('notes'));
     }

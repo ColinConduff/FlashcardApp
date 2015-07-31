@@ -17,11 +17,11 @@ class DashboardController extends Controller
     public function displayDashboard() 
     {
         $user = Auth::user();
-        $decks = Auth::user()->decks()->get();
-        $notes = Auth::user()->notes()->get();
-        $reviews = Auth::user()->reviews()->get();
-        $posts = Auth::user()->posts()->get();
-        $comments = Auth::user()->comments()->get();
+        $decks = Auth::user()->decks()->orderBy('updated_at', 'desc')->paginate(5);
+        $notes = Auth::user()->notes()->orderBy('updated_at', 'desc')->paginate(5);
+        $reviews = Auth::user()->reviews()->orderBy('updated_at', 'desc')->paginate(5);
+        $posts = Auth::user()->posts()->orderBy('updated_at', 'desc')->paginate(5);
+        $comments = Auth::user()->comments()->orderBy('updated_at', 'desc')->paginate(5);
 
         return view('dashboard', compact('user', 'decks', 'notes', 'reviews', 'posts', 'comments'));
     }

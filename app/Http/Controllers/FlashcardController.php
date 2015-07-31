@@ -46,7 +46,7 @@ class FlashcardController extends Controller
     {
         $flashcard = Flashcard::findOrFail($id);
 
-        $notes = DB::table('notes')->where('flashcard_id', '=', $id)->get();
+        $notes = DB::table('notes')->where('flashcard_id', '=', $id)->paginate(5);
 
         return view('flashcards.showOne', compact('flashcard', 'notes'));
     }

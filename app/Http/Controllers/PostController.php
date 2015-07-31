@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Auth::user()->posts()->get();
+        $posts = Auth::user()->posts()->paginate(5);
 
         return view('posts.showAll', compact('posts'));
     }
@@ -68,7 +68,7 @@ class PostController extends Controller
     {
         $post = Auth::user()->posts()->findOrFail($id);
 
-        $comments = DB::table('comments')->where('post_id', '=', $id)->get();
+        $comments = DB::table('comments')->where('post_id', '=', $id)->paginate(5);
 
         return view('posts.showOne', compact('post', 'comments'));
     }
