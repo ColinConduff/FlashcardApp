@@ -24,8 +24,8 @@ class FlashcardRequest extends Request
     public function rules()
     {
         return [
-            'front' => 'required',
-            'back' => 'required',
+            'front' => 'required|string',
+            'back' => 'required|string',
         ];
     }
 }

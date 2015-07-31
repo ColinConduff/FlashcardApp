@@ -25,8 +25,8 @@ class ReviewRequest extends Request
     {
         return [
             'rating' => 'required|between:0,5',
-            'title' => 'required',
-            'body' => 'required',
+            'title' => 'required|string',
+            'body' => 'required|string',
         ];
     }
 }

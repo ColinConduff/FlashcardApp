@@ -24,7 +24,7 @@ class NoteRequest extends Request
     public function rules()
     {
         return [
-            'body' => 'required'
+            'body' => 'required|string'
         ];
     }
 }

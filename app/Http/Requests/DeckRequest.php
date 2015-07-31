@@ -24,9 +24,9 @@ class DeckRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required',
-            'subject' => 'required',
-            'private' => 'required',
+            'title' => 'required|string',
+            'subject' => 'required|string',
+            'private' => 'required|boolean',
         ];
     }
 }

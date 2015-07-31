@@ -33,11 +33,9 @@
 							@endif
 						</td>
 						<td>
-							<button type="button" class="btn btn-info">
-								<a href="{{ url('decks', [$deck->id, 'edit']) }}">
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								</a>
-							</button>
+							<a href="{{ url('decks', [$deck->id, 'edit']) }}" class="btn btn-info">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</a>
 						</td>
 						<td>
 							{!! Form::open(array('url' => 'decks/' . $deck->id)) !!}
@@ -73,11 +71,9 @@
 						<td>{{ $flashcard->number_correct }}</td>
 						<td>{{ $flashcard->ratio_correct }}</td>
 						<td>
-							<button type="button" class="btn btn-info">
-								<a href="{{ url('flashcards', [$flashcard->id, 'edit']) }}">
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								</a>
-							</button>
+							<a href="{{ url('flashcards', [$flashcard->id, 'edit']) }}" class="btn btn-info">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</a>
 						</td>
 						<td>
 							{!! Form::open(array('url' => 'flashcards/' . $flashcard->id)) !!}
