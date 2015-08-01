@@ -8,6 +8,7 @@ use Auth;
 use DB;
 use App\User;
 use App\Deck;
+use App\Review;
 use App\Flashcard;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -169,9 +170,9 @@ class BrowseController extends Controller
     {
         $deck = Deck::findOrFail($id);
 
-        $flashcards = DB::table('flashcards')->where('deck_id', '=', $id)->get();
+        $flashcards = DB::table('flashcards')->where('deck_id', '=', $id)->paginate(10);
 
-        $reviews = DB::table('reviews')->where('deck_id', '=', $id)->get();
+        $reviews = DB::table('reviews')->where('deck_id', '=', $id)->paginate(10);
 
         return view('decks.protectedShowOne', compact('deck', 'flashcards', 'reviews'));
     }
@@ -186,6 +187,16 @@ class BrowseController extends Controller
         return view('flashcards.protectedShowOne', compact('flashcard'));
     }
 
+    /*
+        Shows one flashcard at a time without edit and delete functionality 
+    */
+    public function showProtectedReview($id)
+    {
+        $review = Review::with('deck', 'user')->findOrFail($id);
+
+        return view('reviews.protectedShowOne', compact('review'));
+    }
+
     /* 
         The parameter is a deck id.  
         The function creates a new deck with the original 
@@ -197,10 +208,10 @@ class BrowseController extends Controller
         $originalDeck = Deck::findOrFail($id);
 
         $clonedDeck = new Deck;
-        $clonedDeck['average_rating'] = $originalDeck->average_rating;
+        $clonedDeck['average_rating'] = 0;
         $clonedDeck['title'] = $originalDeck->title;
         $clonedDeck['subject'] = $originalDeck->subject;
-        $clonedDeck['private'] = $originalDeck->private;
+        $clonedDeck['private'] = 1;
         Auth::user()->decks()->save($clonedDeck);
 
         $originalFlashcards = Flashcard::where('deck_id', '=', $originalDeck->id)->get();
@@ -210,9 +221,9 @@ class BrowseController extends Controller
             $cloneFlashcard = new Flashcard;
             $cloneFlashcard['front'] = $origFlashcard->front;
             $cloneFlashcard['back'] = $origFlashcard->back;
-            $cloneFlashcard['number_of_attempts'] = $origFlashcard->number_of_attempts;
-            $cloneFlashcard['number_correct'] = $origFlashcard->number_correct;
-            $cloneFlashcard['ratio_correct'] = $origFlashcard->ratio_correct;
+            $cloneFlashcard['number_of_attempts'] = 0;
+            $cloneFlashcard['number_correct'] = 0;
+            $cloneFlashcard['ratio_correct'] = 0;
             $cloneFlashcard['deck_id'] = $clonedDeck->id;
             $cloneFlashcard->save();
         }

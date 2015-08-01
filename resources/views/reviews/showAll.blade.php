@@ -32,7 +32,7 @@
 				@foreach ($reviews as $review)
 					<tr>
 						<td>
-							<a href="{{ url('decks', [$review->deck_id]) }}">
+							<a href="{{ url('showProtectedDeck', [$review->deck_id]) }}">
 								<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
 							</a>
 						</td>

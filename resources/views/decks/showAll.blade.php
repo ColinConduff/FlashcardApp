@@ -15,27 +15,22 @@
 	{{-- The following code shows the user all of their decks.  --}}
 
 	<div class="container">
-		<h1 class="text-center">Decks</h1>
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h1 class="text-center">Decks</h1>
+			</div>
+			<div class="panel-body">
+				<a href="{{ url('decks/create') }}" class="btn btn-primary btn-block">
+					Create a New Deck!
+				</a>
+			</div>
 
-		<a href="{{ url('decks/create') }}" class="btn btn-primary btn-block">
-			Create a New Deck!
-		</a>
-
-		<div style="margin-top: 2em;">
 		@if(count($decks))
 			<table class="table">
-				<tr>
-					<th>Title</th>
-					<th>Rating</th>
-					<th>Subject</th>
-					<th>Private</th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
 				@foreach ($decks as $deck)
 					<tr>
+						<td><span class="badge">{{ $deck->average_rating }}</span></td>
 						<td><a href="{{ url('decks', [$deck->id]) }}">{{ $deck->title }}</a></td>
-						<td>{{ $deck->average_rating }}</td>
 						<td>{{ $deck->subject }}</td>
 						<td>
 							@if ( $deck->private )
@@ -60,6 +55,8 @@
 			</table>
 		@endif
 		</div>
+
+		<div class="text-center">{!! $decks->render() !!}</div>
 
 	</div>
 

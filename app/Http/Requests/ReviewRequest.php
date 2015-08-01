@@ -24,7 +24,7 @@ class ReviewRequest extends Request
     public function rules()
     {
         return [
-            'rating' => 'required|between:0,5',
+            'rating' => 'required|integer|in:1,2,3,4,5',
             'title' => 'required|string',
             'body' => 'required|string',
         ];

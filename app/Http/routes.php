@@ -84,6 +84,11 @@ Route::get('showProtectedFlashcard/{id}', [
 	'uses' => 'BrowseController@showProtectedFlashcard'
 ]);
 
+Route::get('showProtectedReview/{id}', [
+	'middleware' => 'auth', 
+	'uses' => 'BrowseController@showProtectedReview'
+]);
+
 /*
 	The following routes call various functions on the ForumController.
 	These functions sort the forum posts by various attributes/columns.

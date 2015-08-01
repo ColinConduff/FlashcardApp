@@ -8,165 +8,157 @@
 	--}}
 
 	<div class="container">
-		<h1 class="text-center">Deck: {{ $deck->title }}</h1>
 		<a href="{{ url('decks') }}">View All Decks</a>
+		@include('errors.list')
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h1 class="text-center">{{ $deck->title }}</h1>
+			</div>
 
-		<div style="margin-top: 2em;">
 			<table class="table">
 				<tr>
-					<th>Title</th>
-					<th>Rating</th>
-					<th>Subject</th>
-					<th>Private</th>
-					<th>Edit</th>
-					<th>Delete</th>
+					<td>
+						Rating: 
+						<span class="badge">{{ $deck->average_rating }}</span>
+					</td>
+					<td>Topic: {{ $deck->subject }}</td>
+					<td>
+						Status:
+						@if ( $deck->private )
+							Private
+						@else
+							Public
+						@endif
+					</td>
+					<td>
+						<a href="{{ url('decks', [$deck->id, 'edit']) }}" class="btn btn-info">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+						</a>
+					</td>
+					<td>
+						{!! Form::open(array('url' => 'decks/' . $deck->id)) !!}
+		                    {!! Form::hidden('_method', 'DELETE') !!}
+		                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
+		                {!! Form::close() !!}
+					</td>
 				</tr>
-					<tr>
-						<td>{{ $deck->title }}</td>
-						<td>{{ $deck->average_rating }}</td>
-						<td>{{ $deck->subject }}</td>
-						<td>
-							@if ( $deck->private )
-								Private
-							@else
-								Public
-							@endif
-						</td>
-						<td>
-							<a href="{{ url('decks', [$deck->id, 'edit']) }}" class="btn btn-info">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-							</a>
-						</td>
-						<td>
-							{!! Form::open(array('url' => 'decks/' . $deck->id)) !!}
-			                    {!! Form::hidden('_method', 'DELETE') !!}
-			                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
-			                {!! Form::close() !!}
-						</td>
-					</tr>
 			</table>
 		</div>
-
-		<h3 class="text-center">Flashcards</h3>
 
 		<div class="row">
 		<div class="col-md-9">
-		<div style="margin-top: 2em;">
-		@if(count($flashcards))
-			<table class="table">
-				<tr>
-					<th>Front</th>
-					<th>Back</th>
-					<th>Number of Attempts</th>
-					<th>Number Correct</th>
-					<th>Ratio Correct</th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
-				@foreach ($flashcards as $flashcard)
-					<tr>
-						<td><a href="{{ url('flashcards', [$flashcard->id]) }}">{{ $flashcard->front }}</a></td>
-						<td>{{ $flashcard->back }}</td>
-						<td>{{ $flashcard->number_of_attempts }}</td>
-						<td>{{ $flashcard->number_correct }}</td>
-						<td>{{ $flashcard->ratio_correct }}</td>
-						<td>
-							<a href="{{ url('flashcards', [$flashcard->id, 'edit']) }}" class="btn btn-info">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-							</a>
-						</td>
-						<td>
-							{!! Form::open(array('url' => 'flashcards/' . $flashcard->id)) !!}
-			                    {!! Form::hidden('_method', 'DELETE') !!}
-			                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
-			                {!! Form::close() !!}
-						</td>
-					</tr>
-				@endforeach
-			</table>
-		@endif
-		</div>
+			<div class="panel panel-default">
+				
+				<div class="panel-heading">
+					<h3 class="text-center">Flashcards</h3>
+				</div>
+				
+				@if(count($flashcards))
+					<table class="table">
+						@foreach ($flashcards as $flashcard)
+							<tr>
+								<td><a href="{{ url('flashcards', [$flashcard->id]) }}">{{ $flashcard->front }}</a></td>
+								<td>
+									{{ $flashcard->number_of_attempts }} 
+									@if($flashcard->number_of_attempts > 1)
+										attempts
+									@else
+										attempt
+									@endif
+								</td>
+								<td>{{ $flashcard->number_correct }} correct</td>
+								<td>{{ $flashcard->ratio_correct * 100 }} %</td>
+								<td>
+									<a href="{{ url('flashcards', [$flashcard->id, 'edit']) }}" class="btn btn-info">
+										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									</a>
+								</td>
+								<td>
+									{!! Form::open(array('url' => 'flashcards/' . $flashcard->id)) !!}
+					                    {!! Form::hidden('_method', 'DELETE') !!}
+					                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
+					                {!! Form::close() !!}
+								</td>
+							</tr>
+						@endforeach
+					</table>
+				@endif
+			</div>
 		</div>
 
 		@if(count($flashcards))
-		<div class="col-md-3 text-center">
-		@include('errors.list')
-		
-		{!! Form::model($deck, ['url' => 'flashcards']) !!}
+			<div class="col-md-3 text-center">
+				<div class="well">
+					{!! Form::model($deck, ['url' => 'flashcards']) !!}
 
-			<div class="form-group">
-				{!! Form::label('front', 'Front:' ) !!}
-				{!! Form::text('front', null, ['class' => 'form-control']) !!}
+						<div class="form-group">
+							{!! Form::label('front', 'Front:' ) !!}
+							{!! Form::text('front', null, ['class' => 'form-control']) !!}
+						</div>
+					
+						<div class="form-group">
+							{!! Form::label('back', 'Back:') !!}
+							{!! Form::text('back', null, ['class' => 'form-control']) !!}
+						</div>
+					
+						<div hidden=true class="form-group">
+							{!! Form::label('deck_id', 'Deck_id:') !!}
+							{!! Form::text('deck_id', $deck->id, ['class' => 'form-control']) !!}
+						</div>
+					
+						<div class="form-group">
+							{!! Form::submit('Add Flashcard', ['class' => 'btn btn-primary form-control']) !!}
+						</div>
+					
+					{!! Form::close() !!}
+				</div>
 			</div>
-		
-			<div class="form-group">
-				{!! Form::label('back', 'Back:') !!}
-				{!! Form::text('back', null, ['class' => 'form-control']) !!}
-			</div>
-		
-			<div hidden=true class="form-group">
-				{!! Form::label('deck_id', 'Deck_id:') !!}
-				{!! Form::text('deck_id', $deck->id, ['class' => 'form-control']) !!}
-			</div>
-		
-			<div class="form-group">
-				{!! Form::submit('Add Flashcard', ['class' => 'btn btn-primary form-control']) !!}
-			</div>
-		
-		{!! Form::close() !!}
-		</div>
 		@else
-		<div class="col-md-12 text-center">
-			@include('errors.list')
-		
-			{!! Form::model($deck, ['url' => 'flashcards']) !!}
+			<div class="col-md-12 well text-center">
+				<div class="well">
+					{!! Form::model($deck, ['url' => 'flashcards']) !!}
 
-				<div class="form-group">
-					{!! Form::label('front', 'Front:' ) !!}
-					{!! Form::text('front', null, ['class' => 'form-control']) !!}
+						<div class="form-group">
+							{!! Form::label('front', 'Front:' ) !!}
+							{!! Form::text('front', null, ['class' => 'form-control']) !!}
+						</div>
+					
+						<div class="form-group">
+							{!! Form::label('back', 'Back:') !!}
+							{!! Form::text('back', null, ['class' => 'form-control']) !!}
+						</div>
+					
+						<div hidden=true class="form-group">
+							{!! Form::label('deck_id', 'Deck_id:') !!}
+							{!! Form::text('deck_id', $deck->id, ['class' => 'form-control']) !!}
+						</div>
+					
+						<div class="form-group">
+							{!! Form::submit('Add Flashcard', ['class' => 'btn btn-primary form-control']) !!}
+						</div>
+					
+					{!! Form::close() !!}
 				</div>
-			
-				<div class="form-group">
-					{!! Form::label('back', 'Back:') !!}
-					{!! Form::text('back', null, ['class' => 'form-control']) !!}
-				</div>
-			
-				<div hidden=true class="form-group">
-					{!! Form::label('deck_id', 'Deck_id:') !!}
-					{!! Form::text('deck_id', $deck->id, ['class' => 'form-control']) !!}
-				</div>
-			
-				<div class="form-group">
-					{!! Form::submit('Add Flashcard', ['class' => 'btn btn-primary form-control']) !!}
-				</div>
-			
-			{!! Form::close() !!}
+			</div>
 		@endif
 		</div>
 
 	@if(count($reviews))
-	<h3 class="text-center">Reviews</h3>
-	<div style="margin-top: 2em;">
-			<table class="table">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="text-center">Reviews</h3>
+		</div>
+		<table class="table text-center">
+			@foreach ($reviews as $review)
 				<tr>
-					<th>Title</th>
-					<th>Body</th>
-					<th>Rating</th>
-					<th>Published At</th>
+					<td><span class="badge">{{ $review->rating }}</span></td>
+					<td><a href="{{ url('reviews', [$review->id]) }}">{{ $review->title }}</a></td>
+					<td>{{ date('n/j/y g:i a', strtotime($review->published_at)) }}</td>
 				</tr>
-				@foreach ($reviews as $review)
-					<tr>
-						<td>{{ $review->title }}</td>
-						<td>{{ $review->body }}</td>
-						<td>{{ $review->rating }}</td>
-						<td>{{ $review->published_at }}</td>
-					</tr>
-				@endforeach
-			</table>
+			@endforeach
+		</table>
 	</div>
 	@endif
-
-	</div>
 
 	</div>
 @stop

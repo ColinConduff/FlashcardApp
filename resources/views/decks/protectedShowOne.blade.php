@@ -8,23 +8,33 @@
 	--}}
 
 	<div class="container">
-		<h1 class="text-center">Deck: <small>{{ $deck->title }}</small></h1>
+		
 		<a href="{{ url('browseTitleDesc') }}">Back to Browse</a>
-		<a href="{{ url('cloneDeck', [$deck->id]) }}" class="btn btn-primary pull-right">Clone Deck</a>
+		
+		<div class="panel panel-default">
+			
+			<div class="panel-heading">
+				<h1 class="text-center">{{ $deck->title }}</h1>
+			</div>
 
-		<div style="margin-top: 2em;">
-			<table class="table">
+			<div class="panel-body">
+				<a href="{{ url('cloneDeck', [$deck->id]) }}" class="btn btn-primary btn-block">Clone Deck</a>
+			</div>
+			
+			<table class="table text-center">
 				<tr>
-					<th>Title</th>
-					<th>Average Rating</th>
-					<th>Subject</th>
-					<th>Private</th>
-				</tr>
-				<tr>
-					<td>{{ $deck->title }}</td>
-					<td>{{ $deck->average_rating }}</td>
-					<td>{{ $deck->subject }}</td>
 					<td>
+						Rating: 
+						<span class="badge">
+							{{ $deck->average_rating }}
+						</span>
+					</td>
+					<td>
+						Subject:
+						{{ $deck->subject }}
+					</td>
+					<td>
+						Status:
 						@if ( $deck->private )
 							Private
 						@else
@@ -36,62 +46,40 @@
 		</div>
 
 		@if(count($flashcards))
-		<h3 class="text-center">Flashcards</h3>
-
-		<div class="row">
-			<div class="col-md-12">
-				<div style="margin-top: 2em;">
-					@if(count($flashcards))
-						<table class="table">
-							<tr>
-								<th>Front</th>
-								<th>Back</th>
-								<th>Number of Attempts</th>
-								<th>Number Correct</th>
-								<th>Ratio Correct</th>
-							</tr>
-							@foreach ($flashcards as $flashcard)
-								<tr>
-									<td><a href="{{ url('showProtectedFlashcard', [$flashcard->id]) }}">{{ $flashcard->front }}</a></td>
-									<td>{{ $flashcard->back }}</td>
-									<td>{{ $flashcard->number_of_attempts }}</td>
-									<td>{{ $flashcard->number_correct }}</td>
-									<td>{{ $flashcard->ratio_correct }}</td>
-								</tr>
-							@endforeach
-						</table>
-					@endif
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="text-center">Flashcards</h3>
 				</div>
+				@if(count($flashcards))
+					<table class="table text-center">
+						@foreach ($flashcards as $flashcard)
+							<tr>
+								<td><a href="{{ url('showProtectedFlashcard', [$flashcard->id]) }}">{{ $flashcard->front }}</a></td>
+								<td>{{ $flashcard->back }}</td>
+							</tr>
+						@endforeach
+					</table>
+				@endif
 			</div>
-		</div>
+			<div class="text-center">{!! $flashcards->render() !!}</div>
 		@endif
 
 		@if(count($reviews))
-		<div class="row">
-			<h3 class="text-center">Reviews</h3>
-			<div class="col-md-12">
-				<div style="margin-top: 2em;">
-					@if(count($reviews))
-						<table class="table">
-							<tr>
-								<th>Title</th>
-								<th>Body</th>
-								<th>Rating</th>
-								<th>Published At</th>
-							</tr>
-							@foreach ($reviews as $review)
-								<tr>
-									<td>{{ $review->title }}</td>
-									<td>{{ $review->body }}</td>
-									<td>{{ $review->rating }}</td>
-									<td>{{ $review->published_at }}</td>
-								</tr>
-							@endforeach
-						</table>
-					@endif
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="text-center">Reviews</h3>
 				</div>
+				<table class="table text-center">
+					@foreach ($reviews as $review)
+						<tr>
+							<td><span class="badge">{{ $review->rating }}</span></td>
+							<td><a href="{{ url('showProtectedReview', [$review->id]) }}">{{ $review->title }}</a></td>
+							<td>{{ date('n/j/y g:i a', strtotime($review->published_at)) }}</td>
+						</tr>
+					@endforeach
+				</table>
 			</div>
-		</div>
+			<div class="text-center">{!! $reviews->render() !!}</div>
 		@endif
 
 		<div class="well">
@@ -100,18 +88,15 @@
 			{!! Form::open(['url' => 'reviews']) !!}
 			
 				<div class="form-group">
-					{!! Form::label('title', 'Title:') !!}
-					{!! Form::text('title', null, ['class' => 'form-control']) !!}
+					{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) !!}
 				</div>
 
 				<div class="form-group">
-					{!! Form::label('body', 'Body:') !!}
-					{!! Form::text('body', null, ['class' => 'form-control']) !!}
+					{!! Form::text('body', null, ['class' => 'form-control', 'placeholder' => 'Body']) !!}
 				</div>
 
 				<div class="form-group">
-					{!! Form::label('rating', 'Rating:') !!}
-					{!! Form::text('rating', null, ['class' => 'form-control']) !!}
+					{!! Form::text('rating', null, ['class' => 'form-control', 'placeholder' => 'Rating (1-5)']) !!}
 				</div>
 
 				<div hidden=true class="form-group">
