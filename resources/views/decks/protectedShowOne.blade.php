@@ -72,7 +72,15 @@
 				<table class="table text-center">
 					@foreach ($reviews as $review)
 						<tr>
-							<td><span class="badge">{{ $review->rating }}</span></td>
+							<td>
+								@for($i = 1; $i <= $review->rating; $i++)
+									<span class="glyphicon glyphicon-star"></span>
+								@endfor
+
+								@for($i = $review->rating + 1; $i <= 5 ; $i++)
+									<span class="glyphicon glyphicon-star-empty"></span>
+								@endfor
+							</td>
 							<td><a href="{{ url('showProtectedReview', [$review->id]) }}">{{ $review->title }}</a></td>
 							<td>{{ date('n/j/y g:i a', strtotime($review->published_at)) }}</td>
 						</tr>

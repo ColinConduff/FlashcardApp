@@ -31,7 +31,7 @@
 					<tr>
 						<td><span class="badge">{{ $deck->average_rating }}</span></td>
 						<td><a href="{{ url('decks', [$deck->id]) }}">{{ $deck->title }}</a></td>
-						<td>{{ $deck->subject }}</td>
+						<td><small>Subject: </small>{{ $deck->subject }}</td>
 						<td>
 							@if ( $deck->private )
 								Private

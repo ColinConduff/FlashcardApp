@@ -112,7 +112,9 @@ class ForumController extends Controller
 
     public function showProtectedPost($id)
     {
-        $post = Post::with('comments')->findOrFail($id);
+        $post = Post::with(['comments' => function ($query) {
+                $query->orderBy('published_at', 'asc');
+            }])->findOrFail($id);
 
         return view('posts.protectedShowOne' ,compact('post'));
     }

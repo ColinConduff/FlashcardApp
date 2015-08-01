@@ -152,7 +152,7 @@
 			@foreach ($reviews as $review)
 				<tr>
 					<td><span class="badge">{{ $review->rating }}</span></td>
-					<td><a href="{{ url('reviews', [$review->id]) }}">{{ $review->title }}</a></td>
+					<td><a href="{{ url('showProtectedReview', [$review->id]) }}">{{ $review->title }}</a></td>
 					<td>{{ date('n/j/y g:i a', strtotime($review->published_at)) }}</td>
 				</tr>
 			@endforeach

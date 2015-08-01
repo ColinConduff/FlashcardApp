@@ -28,7 +28,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Auth::user()->reviews()->paginate(5);
+        $reviews = Auth::user()->reviews()->with('deck')->orderBy('published_at', 'desc')->paginate(5);
 
         return view('reviews.showAll', compact('reviews'));
     }
@@ -49,7 +49,7 @@ class ReviewController extends Controller
         $deck->average_rating = Review::where('deck_id', '=', $request->deck_id)->avg('rating');
         $deck->update();
 
-        return redirect()->action('BrowseController@showProtectedDeck', ['id' => $review->deck_id]);
+        return redirect()->action('BrowseController@showProtectedDeck', [$review->deck_id]);
     }
 
     /**
@@ -95,7 +95,7 @@ class ReviewController extends Controller
         $deck->average_rating = Review::where('deck_id', '=', $request->deck_id)->avg('rating');
         $deck->update();
 
-        return redirect()->action('DeckController@showProtectedDeck', [$review->deck_id]);
+        return redirect()->action('ReviewController@index');
     }
 
     /**
@@ -109,6 +109,6 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         $review->delete();
 
-        return redirect()->action('DeckController@show', [$review->deck_id]);
+        return redirect()->action('ReviewController@index');
     }
 }

@@ -15,7 +15,7 @@
         <div class="row">
     		{!! Form::open(['url' => 'forumSearchBar']) !!}
     		    <div class="form-group col-sm-10">
-    				{!! Form::text('title', 'Post Title', ['class' => 'form-control']) !!}
+    				{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Post Title']) !!}
     			</div>
 
     			<div class="form-group col-sm-2">

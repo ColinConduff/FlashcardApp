@@ -24,11 +24,9 @@
 					<td>{{ $comment->published_at }}</td>
 					<td>{{ $comment->score }}</td>
 					<td>
-						<button type="button" class="btn btn-info">
-							<a href="{{ url('comments', [$comment->id, 'edit']) }}">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-							</a>
-						</button>
+						<a href="{{ url('comments', [$comment->id, 'edit']) }}" class="btn btn-info">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+						</a>
 					</td>
 					<td>
 						{!! Form::open(array('url' => 'comments/' . $comment->id)) !!}

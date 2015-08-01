@@ -27,7 +27,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Auth::user()->comments()->paginate(5);
+        $comments = Auth::user()->comments()->orderBy('published_at', 'desc')->paginate(5);
     
         return view('comments.showAll', compact('comments'));
     }

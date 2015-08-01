@@ -64,7 +64,15 @@
 					<table class="table">
 						@foreach ($reviews as $review)
 							<tr>
-								<td><span class="badge">{{ $review->rating }}</span></td>
+								<td>
+									@for($i = 1; $i <= $review->rating; $i++)
+										<span class="glyphicon glyphicon-star"></span>
+									@endfor
+
+									@for($i = $review->rating + 1; $i <= 5 ; $i++)
+										<span class="glyphicon glyphicon-star-empty"></span>
+									@endfor
+								</td>
 								<td><a href="{{ url('reviews', [$review->id]) }}">{{ $review->title }}</a></td>
 								<td class="text-center">{{ date('n/j/y', strtotime($review->published_at)) }}</td>
 							</tr>

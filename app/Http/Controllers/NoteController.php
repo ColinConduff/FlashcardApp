@@ -27,7 +27,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Auth::user()->notes()->paginate(5);
+        $notes = Auth::user()->notes()->with('flashcard')->orderBy('published_at', 'desc')->paginate(5);
     
         return view('notes.showAll', compact('notes'));
     }
@@ -87,7 +87,7 @@ class NoteController extends Controller
 
         $note->update($request->all());
 
-        return redirect()->action('FlashcardController@show', [$note->flashcard_id]);
+        return redirect()->action('NoteController@index');
     }
 
     /**
@@ -101,7 +101,7 @@ class NoteController extends Controller
         $note = Note::findOrFail($id);
         $note->delete();
 
-        return redirect()->action('FlashcardController@show', [$note->flashcard_id]);
+        return redirect()->action('NoteController@index');
     }
 
     public function upvote($id)

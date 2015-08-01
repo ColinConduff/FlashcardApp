@@ -15,47 +15,49 @@
 	{{-- This shows the user all of their reviews --}}
 	
 	<div class="container">
-		<h1 class="text-center">Reviews</h1>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h1 class="text-center">Reviews</h1>
+			</div>
 
-		<div style="margin-top: 2em;">
-		@if(count($reviews))
-			<table class="table">
-				<tr>
-					<th>Referenced Deck</th>
-					<th>Title</th>
-					<th>Body</th>
-					<th>Rating</th>
-					<th>Publish Date</th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
-				@foreach ($reviews as $review)
-					<tr>
-						<td>
-							<a href="{{ url('showProtectedDeck', [$review->deck_id]) }}">
-								<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
-							</a>
-						</td>
-						<td><a href="{{ url('reviews', [$review->id]) }}">{{ $review->title }}</a></td>
-						<td>{{ $review->body }}</td>
-						<td>{{ $review->rating }}</td>
-						<td>{{ $review->published_at}}</td>
-						<td>
-							<a href="{{ url('reviews', [$review->id, 'edit']) }}" class="btn btn-info">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-							</a>
-						</td>
-						<td>
-							{!! Form::open(array('url' => 'reviews/' . $review->id)) !!}
-			                    {!! Form::hidden('_method', 'DELETE') !!}
-			                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
-			                {!! Form::close() !!}
-						</td>
-					</tr>
-				@endforeach
-			</table>
-		@endif
+			@if(count($reviews))
+				<table class="table">
+					@foreach ($reviews as $review)
+						<tr>
+							<td>
+								<a href="{{ url('showProtectedDeck', [$review->deck_id]) }}">
+									{{ $review->deck->title }}
+								</a>
+							</td>
+							<td><a href="{{ url('reviews', [$review->id]) }}">{{ $review->title }}</a></td>
+							<td>
+								@for($i = 1; $i <= $review->rating; $i++)
+									<span class="glyphicon glyphicon-star"></span>
+								@endfor
+
+								@for($i = $review->rating + 1; $i <= 5 ; $i++)
+									<span class="glyphicon glyphicon-star-empty"></span>
+								@endfor
+							</td>
+							<td>{{ date('n/j/y g:i a', strtotime($review->published_at)) }}</td>
+							<td>
+								<a href="{{ url('reviews', [$review->id, 'edit']) }}" class="btn btn-info">
+									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								</a>
+							</td>
+							<td>
+								{!! Form::open(array('url' => 'reviews/' . $review->id)) !!}
+				                    {!! Form::hidden('_method', 'DELETE') !!}
+				                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
+				                {!! Form::close() !!}
+							</td>
+						</tr>
+					@endforeach
+				</table>
+			@endif
 		</div>
+
+		<div class="text-center">{!! $reviews->render() !!}</div>
 
 	</div>
 

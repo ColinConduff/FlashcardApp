@@ -13,7 +13,7 @@
 		<div class="row">
 			{!! Form::open(['url' => 'browseSearchBar']) !!}
 			    <div class="form-group col-sm-10">
-					{!! Form::text('title', 'Deck Title', ['class' => 'form-control']) !!}
+					{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Deck Title']) !!}
 				</div>
 
 				<div class="form-group col-sm-2">
