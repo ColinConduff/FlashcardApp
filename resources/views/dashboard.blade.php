@@ -27,24 +27,17 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="panel panel-default">
-			  <div class="panel-heading">
-			  	<a href="{{ url('/decks') }}">
-			    	<h3 class="panel-title">Decks</h3>
-			    </a>
-			  </div>
-			  <div class="panel-body">
+			  	<div class="panel-heading text-center">
+			  		<a href="{{ url('/decks') }}">
+			    		<h3 class="panel-title">Decks</h3>
+			    	</a>
+			  	</div>
 			    @if(count($decks))
 					<table class="table">
-						<tr>
-							<th>Title</th>
-							<th>Rating</th>
-							<th>Subject</th>
-							<th>Private</th>
-						</tr>
 						@foreach ($decks as $deck)
 							<tr>
+								<td><span class="badge">{{ $deck->average_rating }}</span></td>
 								<td><a href="{{ url('decks', [$deck->id]) }}">{{ $deck->title }}</a></td>
-								<td>{{ $deck->average_rating }}</td>
 								<td>{{ $deck->subject }}</td>
 								<td>
 									@if ( $deck->private )
@@ -57,125 +50,90 @@
 						@endforeach
 					</table>
 				@endif
-			  </div>
 			</div>
 		</div>
 
 		<div class="col-md-6">
 			<div class="panel panel-default">
-			  <div class="panel-heading">
-			    <a href="{{ url('/reviews') }}">
-			    	<h3 class="panel-title">Reviews</h3>
-			    </a>
-			  </div>
-			  <div class="panel-body">
+			 	 <div class="panel-heading text-center">
+				    <a href="{{ url('/reviews') }}">
+				    	<h3 class="panel-title">Reviews</h3>
+			    	</a>
+			  	</div>
 			    @if(count($reviews))
 					<table class="table">
-						<tr>
-							<th>Title</th>
-							<th>Rating</th>
-							<th>Body</th>
-							<th>Published At</th>
-						</tr>
 						@foreach ($reviews as $review)
 							<tr>
+								<td><span class="badge">{{ $review->rating }}</span></td>
 								<td><a href="{{ url('reviews', [$review->id]) }}">{{ $review->title }}</a></td>
-								<td>{{ $review->rating }}</td>
-								<td>{{ $review->body }}</td>
-								<td>{{ $review->published_at }}</td>
+								<td class="text-center">{{ date('n/j/y', strtotime($review->published_at)) }}</td>
 							</tr>
 						@endforeach
 					</table>
 				@endif
-			  </div>
 			</div>
 		</div>
 
 		<div class="col-md-6">
 			<div class="panel panel-default">
-			    <div class="panel-heading">
+			    <div class="panel-heading text-center">
 				  	<a href="{{ url('/notes') }}">
 				    	<h3 class="panel-title">Notes</h3>
 				    </a>
 			    </div>
-			    <div class="panel-body">
 				    @if(count($notes))
 						<table class="table">
-							<tr>
-								<th>Body</th>
-								<th>Score</th>
-								<th>Published At</th>
-							</tr>
 							@foreach ($notes as $note)
 								<tr>
+									<td class="text-center"><span class="badge">{{ $note->score }}</span></td>
 									<td>{{ $note->body }}</td>
-									<td>{{ $note->score }}</td>
-									<td>{{ $note->published_at }}</td>
+									<td class="text-center">{{ date('n/j/y', strtotime($note->published_at)) }}</td>
 								</tr>
 							@endforeach
 						</table>
 					@endif
-				</div>
 			</div>
 		</div>
 
 		<div class="col-md-6">
 		<div class="panel panel-default">
-		  <div class="panel-heading">
+		  <div class="panel-heading text-center">
 		    <a href="{{ url('/posts') }}">	
 		    	<h3 class="panel-title">Posts</h3>
 		    </a>
 		  </div>
-		  <div class="panel-body">
 		    @if(count($posts))
 				<table class="table">
-					<tr>
-						<th>Title</th>
-						<th>Body</th>
-						<th>Topic</th>
-						<th>Score</th>
-						<th>Published At</th>
-					</tr>
 					@foreach ($posts as $post)
 						<tr>
+							<td class="text-center"><span class="badge">{{ $post->score }}</span></td>
 							<td><a href="{{ url('posts', [$post->id]) }}">{{ $post->title }}</a></td>
-							<td>{{ $post->body }}</td>
-							<td>{{ $post->topic }}</td>
-							<td>{{ $post->score }}</td>
-							<td>{{ $post->published_at }}</td>
+							<td class="text-center">{{ date('n/j/y g:i a', strtotime($post->published_at)) }}</td>
 						</tr>
 					@endforeach
 				</table>
 			@endif
-		  </div>
 		</div>
 		</div>
 
 		<div class="col-md-6">
 		<div class="panel panel-default">
-		  <div class="panel-heading">
+		  <div class="panel-heading text-center">
 		    <a href="{{ url('/comments') }}">
 		    	<h3 class="panel-title">Comments</h3>
 		    </a>
 		  </div>
-		  <div class="panel-body">
 		     @if(count($comments))
 				<table class="table">
-					<tr>
-						<th>Body</th>
-						<th>Score</th>
-						<th>Published At</th>
-					</tr>
 					@foreach ($comments as $comment)
 						<tr>
+							<td class="text-center"><span class="badge">{{ $comment->score }}</span></td>
 							<td>{{ $comment->body }}</td>
-							<td>{{ $comment->score }}</td>
-							<td>{{ $comment->published_at }}</td>
+							<td class="text-center">{{ date('n/j/y g:i a', strtotime($comment->published_at)) }}</td>
 						</tr>
 					@endforeach
 				</table>
 			@endif
-		  </div>
 		</div>
 		</div>
 	</div>

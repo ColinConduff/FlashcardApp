@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
     /*
-        Displays all of the data related to the user.  
+        Displays the user's most recently updated data.  
     */
     public function displayDashboard() 
     {
