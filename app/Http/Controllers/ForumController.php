@@ -13,14 +13,14 @@ class ForumController extends Controller
 {
     public function forumSearchBar(Request $request)
     {   
-        $posts= Post::where('title', 'like', $request->title.'%')->get();
+        $posts= Post::where('title', 'like', $request->title.'%')->paginate(10);
         return view('forum', compact('posts'));
     }
 
     public function forumTitleDesc()
     {   $posts=  Post::with('user')
               ->orderBy('title', 'desc')
-              ->get();
+              ->paginate(10);
 
         return view('forum', compact('posts'));
     }
@@ -29,38 +29,38 @@ class ForumController extends Controller
     {
         $posts = Post::with('user')
             ->orderBy('title', 'asc')
-            ->get();
+            ->paginate(10);
 
         return view('forum', compact('posts'));
     }
 
-    public function forumUsernameAsc()
-    {
-        $posts = Post::with('user')
-            ->get()
-            ->sortBy(function($posts) {
-                return $posts->user->name;
-            });
+    // public function forumUsernameAsc()
+    // {
+    //     $posts = Post::with('user')
+    //         ->paginate(10)
+    //         ->sortBy(function($posts) {
+    //             return $posts->user->name;
+    //         });
 
-        return view('forum', compact('posts'));
-    }
+    //     return view('forum', compact('posts'));
+    // }
 
-    public function forumUsernameDesc()
-    {
-        $posts = Post::with('user')
-            ->get()
-            ->sortBy(function($posts) {
-                return $posts->user->name;
-            })->reverse();
+    // public function forumUsernameDesc()
+    // {
+    //     $posts = Post::with('user')
+    //         ->paginate(10)
+    //         ->sortBy(function($posts) {
+    //             return $posts->user->name;
+    //         })->reverse();
 
-        return view('forum', compact('posts'));
-    }
+    //     return view('forum', compact('posts'));
+    // }
 
     public function forumTopicAsc()
     {
         $posts = Post::with('user')
             ->orderBy('topic', 'asc')
-            ->get();
+            ->paginate(10);
 
         return view('forum', compact('posts'));
     }
@@ -69,7 +69,7 @@ class ForumController extends Controller
     {
         $posts = Post::with('user')
             ->orderBy('topic', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('forum', compact('posts'));
     }
@@ -78,7 +78,7 @@ class ForumController extends Controller
     {
         $posts = Post::with('user')
             ->orderBy('published_at', 'asc')
-            ->get();
+            ->paginate(10);
 
         return view('forum', compact('posts'));
     }
@@ -87,7 +87,7 @@ class ForumController extends Controller
     {
         $posts = Post::with('user')
             ->orderBy('published_at', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('forum', compact('posts'));
     }
@@ -96,7 +96,7 @@ class ForumController extends Controller
     {
          $posts = Post::with('user')
             ->orderBy('score', 'asc')
-            ->get();
+            ->paginate(10);
 
     return view('forum', compact('posts'));
     }
@@ -105,7 +105,7 @@ class ForumController extends Controller
     {
         $posts = Post::with('user')
             ->orderBy('score', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('forum', compact('posts'));
     }

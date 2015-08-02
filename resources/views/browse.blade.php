@@ -37,12 +37,14 @@
 		    	</a>
 		    </th>
 		    <th>Username
+		    	{{-- 
 		    	<a href="{{ url('browseUsernameAsc') }}">
 		    		<span class="glyphicon glyphicon-arrow-up"></span>
 		    	</a>
 		    	<a href="{{ url('browseUsernameDesc') }}">
 		    		<span class="glyphicon glyphicon-arrow-down"></span>
 		    	</a>
+		    	--}}
 		    </th> 
 		    <th>Average Rating
 		    	<a href="{{ url('browseRatingAsc') }}">
@@ -61,12 +63,14 @@
 		    	</a>
 		    </th>
 		    <th>Number of Flashcards
+		    	{{-- 
 		    	<a href="{{ url('browseFlashAsc') }}">
 		    		<span class="glyphicon glyphicon-arrow-up"></span>
 		    	</a>
 		    	<a href="{{ url('browseFlashDesc') }}">
 		    		<span class="glyphicon glyphicon-arrow-down"></span>
 		    	</a>
+		    	--}}
 		    </th>
 		  </tr>
 
@@ -84,6 +88,8 @@
 				</tr>
 			@endforeach
 		</table>
+
+		<div class="text-center">{!! $decks->render() !!}</div>
 
 	</div>
 

@@ -15,14 +15,16 @@
 	{{-- This shows a user all of their comments --}}
 
 	<div class="container">
-		<h1 class="text-center">Comments</h1>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h1 class="text-center">Comments</h1>
+			</div>
 
-		<div style="margin-top: 2em;">
 		@if(count($comments))
 			<table class="table">
 				<tr>
 					<th>Referenced Post</th>
-					<th>Note Body</th>
+					<th>Comment Body</th>
 					<th>Published At</th>
 					<th>Score</th>
 					<th>Edit</th>
@@ -31,8 +33,8 @@
 				@foreach ($comments as $comment)
 					<tr>
 						<td>
-							<a href="{{ url('posts', [$comment->post_id]) }}">
-								<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+							<a href="{{ url('showProtectedPost', [$comment->post_id]) }}">
+								{{ $comment->post->title }}
 							</a>
 						</td>
 						<td>{{ $comment->body }}</td>
@@ -53,9 +55,13 @@
 				@endforeach
 			</table>
 		@else
-		<h3 class="text-center">Nothing to see here...</h3>
+			<div class="panel-body">
+				<h3 class="text-center">Nothing to see here...</h3>
+			</div>
 		@endif
 		</div>
+
+		<div class="text-center">{!! $comments->render() !!}</div>
 	</div>
 
 @stop

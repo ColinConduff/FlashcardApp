@@ -87,7 +87,7 @@ class CommentController extends Controller
 
         $comment->update($request->all());
 
-        return redirect()->action('PostController@show', [$comment->post_id]);
+        return redirect()->action('CommentController@index');
     }
 
     /**
@@ -101,7 +101,7 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($id);
         $comment->delete();
 
-        return redirect()->action('PostController@show', [$comment->post_id]);
+        return redirect()->action('CommentController@index');
     }
 
     public function upvote($id)

@@ -27,6 +27,7 @@
         
 		<table class="table table-striped" style="width:100%">
 		  <tr>
+		   <th>Username</th>
 		    <th>Title
 		    	<a href="{{ url('forumTitleAsc') }}">
 		    		<span class="glyphicon glyphicon-arrow-up"></span>
@@ -34,14 +35,6 @@
 		    	</a>
 		    	<a href="{{ url('forumTitleDesc')}}" >
                     <span class="glyphicon glyphicon-arrow-down"></span>
-		    	</a>
-		    </th>
-		    <th>Username
-		    	<a href="{{ url('forumUsernameAsc') }}">
-		    		<span class="glyphicon glyphicon-arrow-up"></span>
-		    	</a>
-		    	<a href="{{ url('forumUsernameDesc') }}">
-		    		<span class="glyphicon glyphicon-arrow-down"></span>
 		    	</a>
 		    </th>
 		    <th>Topic
@@ -69,21 +62,24 @@
                      <span class="glyphicon glyphicon-arrow-down"></span>
                 </a>
             </th>
+            <th># Comments</th>
  		  </tr>
          
          @foreach ($posts as $post)
 			<tr>
-				<td><a href="{{ url('showProtectedPost', [$post->id]) }}">{{ $post->title }}</a></td>
-
 				<td>{{ $post->user->name }}</td>
+				<td><a href="{{ url('showProtectedPost', [$post->id]) }}">{{ $post->title }}</a></td>
 				<td>{{ $post->topic }}</td>
-				<td>{{ $post->published_at }}</td>
+				<td>{{ date('n/j/y g:i a', strtotime($post->published_at)) }}</td>
 				<td>{{ $post->score}}</td>
+				<td>{{ $post->comments->count() }}
 			</tr>
          @endforeach
          
          
         </table>
+
+        <div class="text-center">{!! $posts->render() !!}
         
 	</div>
 @stop

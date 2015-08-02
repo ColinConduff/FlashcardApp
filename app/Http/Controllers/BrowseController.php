@@ -20,7 +20,7 @@ class BrowseController extends Controller
     */
 	public function browseSearchBar(Request $request) 
     {
-    	$decks = Deck::where('title', 'like', $request->title.'%')->get();
+    	$decks = Deck::where('title', 'like', $request->title.'%')->paginate(10);
     	
 		return view('browse', compact('decks'));
     }
@@ -33,7 +33,7 @@ class BrowseController extends Controller
     	$decks = Deck::with('user', 'flashcards')
     		->where('private', '=', 0)
     		->orderBy('title', 'desc')
-    		->get();
+    		->paginate(10);
 
     	return view('browse', compact('decks'));
     }
@@ -46,7 +46,7 @@ class BrowseController extends Controller
 		$decks = Deck::with('user', 'flashcards')
     		->where('private', '=', 0)
     		->orderBy('title', 'asc')
-    		->get();
+    		->paginate(10);
 
     	return view('browse', compact('decks'));
 	}
@@ -54,32 +54,32 @@ class BrowseController extends Controller
     /*
         Returns all public decks, ordered by username in ascending order
     */
-	public function browseByUsernameAsc()
-	{
-		$decks = Deck::with('user', 'flashcards')
-    		->where('private', '=', 0)
-    		->get()
-    		->sortBy(function($deck) {
-    			return $deck->user->name;
-    		});
+	// public function browseByUsernameAsc()
+	// {
+	// 	$decks = Deck::with('user', 'flashcards')
+ //    		->where('private', '=', 0)
+ //    		->paginate(10)
+ //    		->sortBy(function($deck) {
+ //    			return $deck->user->name;
+ //    		});
 
-    	return view('browse', compact('decks'));
-	}
+ //    	return view('browse', compact('decks'));
+	// }
 
-    /*
-        Returns all public decks, ordered by username in descending order
-    */
-	public function browseByUsernameDesc()
-	{
-		$decks = Deck::with('user', 'flashcards')
-    		->where('private', '=', 0)
-    		->get()
-    		->sortBy(function($deck) {
-    			return $deck->user->name;
-    		})->reverse();
+    
+ //        Returns all public decks, ordered by username in descending order
+    
+	// public function browseByUsernameDesc()
+	// {
+	// 	$decks = Deck::with('user', 'flashcards')
+ //    		->where('private', '=', 0)
+ //    		->paginate(10)
+ //    		->sortBy(function($deck) {
+ //    			return $deck->user->name;
+ //    		})->reverse();
 
-    	return view('browse', compact('decks'));
-	}
+ //    	return view('browse', compact('decks'));
+	// }
 
     /*
         Returns all public decks, ordered by rating in ascending order
@@ -89,7 +89,7 @@ class BrowseController extends Controller
 		$decks = Deck::with('user', 'flashcards')
     		->where('private', '=', 0)
     		->orderBy('average_rating', 'asc')
-    		->get();
+    		->paginate(10);
 
     	return view('browse', compact('decks'));
 	}
@@ -102,7 +102,7 @@ class BrowseController extends Controller
 		$decks = Deck::with('user', 'flashcards')
     		->where('private', '=', 0)
     		->orderBy('average_rating', 'desc')
-    		->get();
+    		->paginate(10);
 
     	return view('browse', compact('decks'));
 	}
@@ -115,7 +115,7 @@ class BrowseController extends Controller
 		$decks = Deck::with('user', 'flashcards')
     		->where('private', '=', 0)
     		->orderBy('subject', 'asc')
-    		->get();
+    		->paginate(10);
 
     	return view('browse', compact('decks'));
 	}
@@ -128,7 +128,7 @@ class BrowseController extends Controller
 		$decks = Deck::with('user', 'flashcards')
     		->where('private', '=', 0)
     		->orderBy('subject', 'desc')
-    		->get();
+    		->paginate(10);
 
     	return view('browse', compact('decks'));
 	}
@@ -136,32 +136,32 @@ class BrowseController extends Controller
     /*
         Returns all public decks, ordered by number of flashcards in ascending order
     */
-	public function browseByFlashAsc()
-	{
-		$decks = Deck::with('user', 'flashcards')
-    		->where('private', '=', 0)
-    		->get()
-    		->sortBy(function($deck) {
-    			return $deck->flashcards->count();
-    		});
+	// public function browseByFlashAsc()
+	// {
+	// 	$decks = Deck::with('user', 'flashcards')
+ //    		->where('private', '=', 0)
+ //    		->get()
+ //    		->sortBy(function($deck) {
+ //    			return $deck->flashcards->count();
+ //    		});
 
-    	return view('browse', compact('decks'));
-	}
+ //    	return view('browse', compact('decks'));
+	// }
 
-    /*
-        Returns all public decks, ordered by number of flashcards in descending order 
-    */
-	public function browseByFlashDesc()
-	{
-		$decks = Deck::with('user', 'flashcards')
-    		->where('private', '=', 0)
-    		->get()
-    		->sortBy(function($deck) {
-    			return $deck->flashcards->count();
-    		})->reverse();
+    
+ //        Returns all public decks, ordered by number of flashcards in descending order 
+    
+	// public function browseByFlashDesc()
+	// {
+	// 	$decks = Deck::with('user', 'flashcards')
+ //    		->where('private', '=', 0)
+ //    		->get()
+ //    		->sortBy(function($deck) {
+ //    			return $deck->flashcards->count();
+ //    		})->reverse();
 
-    	return view('browse', compact('decks'));
-	}
+ //    	return view('browse', compact('decks'));
+	// }
 
     /*
         Shows one deck at a time without edit and delete functionality 
