@@ -19,10 +19,6 @@
 				<li>Review other users' decks and make notes on their flashcards too!</li>
 			</ul>
 		</div>
-
-		<h4>ER Diagram</h4>
-		<img src="{{ URL::asset('ER-diagram.png') }}" class="img-responsive" alt="Responsive image">
-		
 	</div>
 
 @stop

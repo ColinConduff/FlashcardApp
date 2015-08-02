@@ -15,4 +15,4 @@
   - Write reviews of other users' decks
   - Write notes on other users' flashcards
 
-
+![ER Diagram](ER-diagram.png?raw=true "ER Diagram")
