@@ -5,7 +5,7 @@
 	{{-- This is basic introductory text that non-logged in users have access to --}}
 	
 	<div class="container">
-		<h2 class="text-center">Welcome to the Flashcards App!</h2>
+		<h1 class="text-center">Welcome to the Flashcards App!</h2>
 		<hr/>
 		
 		<div class="container-fluid">
@@ -19,6 +19,9 @@
 				<li>Review other users' decks and make notes on their flashcards too!</li>
 			</ul>
 		</div>
+
+		<h4>ER Diagram</h4>
+		<img src="{{ URL::asset('ER-diagram.png') }}" class="img-responsive" alt="Responsive image">
 		
 	</div>
 

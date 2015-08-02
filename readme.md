@@ -1,6 +1,7 @@
 # Flashcards App
 
-## [Demo](https://safe-dusk-7726.herokuapp.com)
+## Demo
+(https://safe-dusk-7726.herokuapp.com)
 
 ## Summary 
 
@@ -13,10 +14,5 @@
   - Write posts and comments in a forum
   - Write reviews of other users' decks
   - Write notes on other users' flashcards
-* 
 
-## ER diagram 
-
-See file named FlashcardAppERDiagram.html
-Created using draw.io
 
