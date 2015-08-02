@@ -49,10 +49,45 @@
 							</tr>
 						@endforeach
 					</table>
+				@else
+					<div class="panel-body">
+						<a href="{{ url('decks/create') }}" class="btn btn-primary btn-block">
+							Create a New Deck!
+						</a>
+					</div>
 				@endif
 			</div>
 		</div>
 
+		<div class="col-md-6">
+		<div class="panel panel-default">
+		  <div class="panel-heading text-center">
+		    <a href="{{ url('/posts') }}">	
+		    	<h3 class="panel-title">Posts</h3>
+		    </a>
+		  </div>
+		    @if(count($posts))
+				<table class="table">
+					@foreach ($posts as $post)
+						<tr>
+							<td class="text-center"><span class="badge">{{ $post->score }}</span></td>
+							<td><a href="{{ url('posts', [$post->id]) }}">{{ $post->title }}</a></td>
+							<td class="text-center">{{ date('n/j/y g:i a', strtotime($post->published_at)) }}</td>
+						</tr>
+					@endforeach
+				</table>
+			@else
+				<div class="panel-body">
+					<a href="{{ url('posts/create') }}" class="btn btn-primary btn-block">
+						Create a New Post!
+					</a>
+				</div>
+			@endif
+		</div>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="col-md-6">
 			<div class="panel panel-default">
 			 	 <div class="panel-heading text-center">
@@ -84,65 +119,46 @@
 
 		<div class="col-md-6">
 			<div class="panel panel-default">
+			  <div class="panel-heading text-center">
+			    <a href="{{ url('/comments') }}">
+			    	<h3 class="panel-title">Comments</h3>
+			    </a>
+			  </div>
+			     @if(count($comments))
+					<table class="table">
+						@foreach ($comments as $comment)
+							<tr>
+								<td class="text-center"><span class="badge">{{ $comment->score }}</span></td>
+								<td>{{ $comment->body }}</td>
+								<td class="text-center">{{ date('n/j/y g:i a', strtotime($comment->published_at)) }}</td>
+							</tr>
+						@endforeach
+					</table>
+				@endif
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-default">
 			    <div class="panel-heading text-center">
 				  	<a href="{{ url('/notes') }}">
 				    	<h3 class="panel-title">Notes</h3>
 				    </a>
 			    </div>
-				    @if(count($notes))
-						<table class="table">
-							@foreach ($notes as $note)
-								<tr>
-									<td class="text-center"><span class="badge">{{ $note->score }}</span></td>
-									<td>{{ $note->body }}</td>
-									<td class="text-center">{{ date('n/j/y', strtotime($note->published_at)) }}</td>
-								</tr>
-							@endforeach
-						</table>
-					@endif
+			    @if(count($notes))
+					<table class="table">
+						@foreach ($notes as $note)
+							<tr>
+								<td class="text-center"><span class="badge">{{ $note->score }}</span></td>
+								<td>{{ $note->body }}</td>
+								<td class="text-center">{{ date('n/j/y', strtotime($note->published_at)) }}</td>
+							</tr>
+						@endforeach
+					</table>
+				@endif
 			</div>
-		</div>
-
-		<div class="col-md-6">
-		<div class="panel panel-default">
-		  <div class="panel-heading text-center">
-		    <a href="{{ url('/posts') }}">	
-		    	<h3 class="panel-title">Posts</h3>
-		    </a>
-		  </div>
-		    @if(count($posts))
-				<table class="table">
-					@foreach ($posts as $post)
-						<tr>
-							<td class="text-center"><span class="badge">{{ $post->score }}</span></td>
-							<td><a href="{{ url('posts', [$post->id]) }}">{{ $post->title }}</a></td>
-							<td class="text-center">{{ date('n/j/y g:i a', strtotime($post->published_at)) }}</td>
-						</tr>
-					@endforeach
-				</table>
-			@endif
-		</div>
-		</div>
-
-		<div class="col-md-6">
-		<div class="panel panel-default">
-		  <div class="panel-heading text-center">
-		    <a href="{{ url('/comments') }}">
-		    	<h3 class="panel-title">Comments</h3>
-		    </a>
-		  </div>
-		     @if(count($comments))
-				<table class="table">
-					@foreach ($comments as $comment)
-						<tr>
-							<td class="text-center"><span class="badge">{{ $comment->score }}</span></td>
-							<td>{{ $comment->body }}</td>
-							<td class="text-center">{{ date('n/j/y g:i a', strtotime($comment->published_at)) }}</td>
-						</tr>
-					@endforeach
-				</table>
-			@endif
-		</div>
 		</div>
 	</div>
 

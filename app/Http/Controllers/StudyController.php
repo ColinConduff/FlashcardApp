@@ -68,7 +68,7 @@ class StudyController extends Controller
     /*
         Updates the flashcard's number of attempts, number correct, and the ratio.
     */
-    public function incorrect($id)
+    public function incorrect($id, $deckID)
     {
         $flashcard = Flashcard::findOrFail($id);
 

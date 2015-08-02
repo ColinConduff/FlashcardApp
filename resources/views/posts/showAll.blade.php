@@ -47,6 +47,10 @@
 						</tr>
 					@endforeach
 				</table>
+			@else
+				<div class="panel-footer">
+					<h3 class="text-center">Nothing to see here...</h3>
+				</div>
 			@endif
 		</div>
 
